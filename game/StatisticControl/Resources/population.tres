@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cqjwbajng0vb8"]
+
+[ext_resource type="Script" path="res://StatisticControl/base_statistic.gd" id="1_pw0s2"]
+
+[resource]
+script = ExtResource("1_pw0s2")
+name = "Population"
+min_value = 0
+max_value = 10000
