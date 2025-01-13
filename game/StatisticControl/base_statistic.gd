@@ -6,5 +6,5 @@ extends Resource
 
 # Default values for a statistic
 @export var name:String = "Statistic"
-@export var min_value:int = -10
-@export var max_value:int = 10
+@export var min_value:int = -100
+@export var max_value:int = 100
