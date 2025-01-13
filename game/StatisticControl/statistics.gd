@@ -4,6 +4,8 @@
 
 extends Node
 
+const CORRELATION_QUOTIENT = 2
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -16,7 +18,7 @@ func _process(delta: float) -> void:
 func negativeCorrelation(statistic: String, val: int) -> void:
 	match statistic:
 		"education":
-			increaseStatistic("education", floor(val/2))
+			increaseStatistic("education", floor(val/CORRELATION_QUOTIENT))
 		"faith":
 			pass
 		"food":
@@ -45,7 +47,7 @@ func negativeCorrelation(statistic: String, val: int) -> void:
 func positiveCorrelation(statistic: String, val: int) -> void:
 	match statistic:
 		"education":
-			decreaseStatistic("education", floor(val/2))
+			decreaseStatistic("education", floor(val/CORRELATION_QUOTIENT))
 		"faith":
 			pass
 		"food":
@@ -72,7 +74,7 @@ func positiveCorrelation(statistic: String, val: int) -> void:
 			pass
 
 func checkCorrelation(val: int) -> bool:
-	if(floor(val/2) > 1):
+	if(floor(val/CORRELATION_QUOTIENT) > 1):
 		return true
 	else:
 		return false
