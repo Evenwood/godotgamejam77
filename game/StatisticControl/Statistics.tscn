@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://d0qqsink86n8v"]
+[gd_scene load_steps=2 format=3 uid="uid://d0qqsink86n8v"]
+
+[ext_resource type="Script" path="res://StatisticControl/statistics.gd" id="1_ue8kn"]
 
 [node name="Statistics" type="Node"]
+script = ExtResource("1_ue8kn")
