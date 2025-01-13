@@ -15,6 +15,8 @@ var materials = 0
 var military_strength = 0
 var population = 0
 var wealth = 0
+var food = 0
+var magic = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
