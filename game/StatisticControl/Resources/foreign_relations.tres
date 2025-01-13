@@ -1,0 +1,9 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cybtimhrawu8e"]
+
+[ext_resource type="Script" path="res://StatisticControl/base_statistic.gd" id="1_xitkq"]
+
+[resource]
+script = ExtResource("1_xitkq")
+name = "Foreign Relations"
+min_value = -10
+max_value = 10
