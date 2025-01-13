@@ -8,3 +8,5 @@ extends Resource
 @export var name:String = "Statistic"
 @export var min_value:int = -100
 @export var max_value:int = 100
+@export var negative_correlation:String = "Statistic"
+@export var positive_correlation:String = "Statistic"

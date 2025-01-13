@@ -17,6 +17,18 @@ config/icon="res://icon.svg"
 [autoload]
 
 State="*res://state.gd"
+Education="*res://StatisticControl/Resources/education.tres"
+Faith="*res://StatisticControl/Resources/faith.tres"
+Food="*res://StatisticControl/Resources/food.tres"
+ForeignRelations="*res://StatisticControl/Resources/foreign_relations.tres"
+Freedom="*res://StatisticControl/Resources/freedom.tres"
+Health="*res://StatisticControl/Resources/health.tres"
+Influence="*res://StatisticControl/Resources/influence.tres"
+Magic="*res://StatisticControl/Resources/magic.tres"
+Materials="*res://StatisticControl/Resources/materials.tres"
+MilitaryStrength="*res://StatisticControl/Resources/military_strength.tres"
+Population="*res://StatisticControl/Resources/population.tres"
+Wealth="*res://StatisticControl/Resources/wealth.tres"
 
 [display]
 
