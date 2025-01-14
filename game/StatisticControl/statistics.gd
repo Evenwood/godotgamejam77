@@ -147,29 +147,101 @@ func decreaseStatistic(statistic: String, val: int) -> void:
 				positiveCorrelation(Education.negative_correlation, val)
 				negativeCorrelation(Education.positive_correlation, val)
 		"faith":
-			pass
+			if((State.faith - val) < Faith.min_value):
+				State.faith = Faith.min_value
+			else:
+				State.faith -= val
+			if(checkCorrelation(val)):
+				positiveCorrelation(Faith.negative_correlation, val)
+				negativeCorrelation(Faith.positive_correlation, val)
 		"food":
-			pass
+			if((State.food - val) < Food.min_value):
+				State.food = Food.min_value
+			else:
+				State.food -= val
+			if(checkCorrelation(val)):
+				positiveCorrelation(Food.negative_correlation, val)
+				negativeCorrelation(Food.positive_correlation, val)
 		"magic":
-			pass
+			if((State.magic - val) < Magic.min_value):
+				State.magic = Magic.min_value
+			else:
+				State.magic -= val
+			if(checkCorrelation(val)):
+				positiveCorrelation(Magic.negative_correlation, val)
+				negativeCorrelation(Magic.positive_correlation, val)
 		"foreign relations":
-			pass
+			if((State.foreign_relations - val) < ForeignRelations.min_value):
+				State.foreign_relations = ForeignRelations.min_value
+			else:
+				State.foreign_relations -= val
+			if(checkCorrelation(val)):
+				positiveCorrelation(ForeignRelations.negative_correlation, val)
+				negativeCorrelation(ForeignRelations.positive_correlation, val)
 		"freedom":
-			pass
+			if((State.freedom - val) < Freedom.min_value):
+				State.freedom = Freedom.min_value
+			else:
+				State.freedom -= val
+			if(checkCorrelation(val)):
+				positiveCorrelation(Freedom.negative_correlation, val)
+				negativeCorrelation(Freedom.positive_correlation, val)
 		"health":
-			pass
+			if((State.health - val) < Health.min_value):
+				State.health = Health.min_value
+			else:
+				State.health -= val
+			if(checkCorrelation(val)):
+				positiveCorrelation(Health.negative_correlation, val)
+				negativeCorrelation(Health.positive_correlation, val)
 		"influence":
-			pass
+			if((State.influence - val) < Influence.min_value):
+				State.influence = Influence.min_value
+			else:
+				State.influence -= val
+			if(checkCorrelation(val)):
+				positiveCorrelation(Influence.negative_correlation, val)
+				negativeCorrelation(Influence.positive_correlation, val)
 		"magic":
-			pass
+			if((State.magic - val) < Magic.min_value):
+				State.magic = Magic.min_value
+			else:
+				State.magic -= val
+			if(checkCorrelation(val)):
+				positiveCorrelation(Magic.negative_correlation, val)
+				negativeCorrelation(Magic.positive_correlation, val)
 		"materials":
-			pass
+			if((State.materials - val) < Materials.min_value):
+				State.materials = Materials.min_value
+			else:
+				State.materials -= val
+			if(checkCorrelation(val)):
+				positiveCorrelation(Materials.negative_correlation, val)
+				negativeCorrelation(Materials.positive_correlation, val)
 		"military strength":
-			pass
+			if((State.military_strength - val) < MilitaryStrength.min_value):
+				State.military_strength = MilitaryStrength.min_value
+			else:
+				State.military_strength -= val
+			if(checkCorrelation(val)):
+				positiveCorrelation(MilitaryStrength.negative_correlation, val)
+				negativeCorrelation(MilitaryStrength.positive_correlation, val)
 		"population":
-			pass
+			if((State.population - val) < Population.min_value):
+				State.population = Population.min_value
+			else:
+				State.population -= val
+			if(checkCorrelation(val)):
+				positiveCorrelation(Population.negative_correlation, val)
+				negativeCorrelation(Population.positive_correlation, val)
 		"wealth":
-			pass
+			if((State.wealth - val) < Wealth.min_value):
+				State.wealth = Wealth.min_value
+			else:
+				State.wealth -= val
+			if(checkCorrelation(val)):
+				positiveCorrelation(Wealth.negative_correlation, val)
+				negativeCorrelation(Wealth.positive_correlation, val)
 		_:
 			pass
 		
