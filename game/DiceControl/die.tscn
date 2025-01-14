@@ -1,6 +1,59 @@
-[gd_scene load_steps=5 format=3 uid="uid://fr0f7sogjjah"]
+[gd_scene load_steps=7 format=3 uid="uid://fr0f7sogjjah"]
 
-[ext_resource type="Script" path="res://DiceControl/die.gd" id="1_3ftiu"]
+[ext_resource type="Texture2D" uid="uid://yyqa6ybj8tk8" path="res://Assets/die-1.png" id="2_80or4"]
+
+[sub_resource type="GDScript" id="GDScript_gdgga"]
+script/source = "# draggable.gd
+extends Node2D
+
+signal drag_started
+signal drag_ended
+signal dragged(new_position: Vector2)
+
+var is_dragging = false
+var drag_offset = Vector2()
+
+# Enable mouse input
+func _ready():
+	# Make sure input is enabled
+	set_process_input(true)
+	
+	# Get the parent node (the node this script is attached to)
+	var parent = get_parent()
+	if parent:
+		# Make the parent able to process input
+		parent.set_process_input(true)
+		
+		# If the parent has a collision shape, make it detect input
+		for child in parent.get_children():
+			if child is CollisionObject2D:
+				child.input_pickable = true
+
+func _input_event(_viewport, event, _shape_idx):
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_LEFT:
+			if event.pressed:
+				# Start dragging
+				is_dragging = true
+				drag_offset = get_global_mouse_position() - global_position
+				emit_signal(\"drag_started\")
+			else:
+				# Stop dragging
+				is_dragging = false
+				emit_signal(\"drag_ended\")
+
+func _input(event):
+	if is_dragging and event is InputEventMouseMotion:
+		# Update position while dragging
+		var new_position = get_global_mouse_position() - drag_offset
+		global_position = new_position
+		emit_signal(\"dragged\", new_position)
+
+# Optional: Add constraints to limit where the object can be dragged
+func set_drag_bounds(bounds: Rect2):
+	# Implement bounds checking here
+	pass
+"
 
 [sub_resource type="Animation" id="Animation_hagik"]
 length = 0.001
@@ -86,14 +139,22 @@ _data = {
 "roll": SubResource("Animation_qaasp")
 }
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_btdpj"]
+size = Vector2(92, 92)
+
 [node name="Die" type="Node2D"]
-script = ExtResource("1_3ftiu")
+script = SubResource("GDScript_gdgga")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(651, 344)
 scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_80or4")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_lvc3h")
 }
+
+[node name="HitBox" type="CollisionShape2D" parent="."]
+position = Vector2(651, 345)
+shape = SubResource("RectangleShape2D_btdpj")

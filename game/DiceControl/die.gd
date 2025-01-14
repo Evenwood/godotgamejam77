@@ -20,7 +20,6 @@ var die_textures = {
 }
 
 func _ready():
-	# Initialize die appearance
 	roll()
 
 func roll() -> int:
