@@ -1,3 +1,41 @@
 [gd_scene format=3 uid="uid://dxayhd2enrxhi"]
 
-[node name="Event" type="Node"]
+[node name="Event" type="Control"]
+layout_mode = 3
+anchor_right = 0.347
+anchor_bottom = 0.5
+offset_right = -444.16
+offset_bottom = -360.0
+
+[node name="EventCanvas" type="CanvasLayer" parent="."]
+
+[node name="EventUIContainer" type="VBoxContainer" parent="EventCanvas"]
+offset_right = 468.0
+offset_bottom = 399.0
+
+[node name="EventName" type="Label" parent="EventCanvas/EventUIContainer"]
+layout_mode = 2
+
+[node name="EventDescriptionContainer" type="HBoxContainer" parent="EventCanvas/EventUIContainer"]
+layout_mode = 2
+
+[node name="EventImage" type="TextureRect" parent="EventCanvas/EventUIContainer/EventDescriptionContainer"]
+layout_mode = 2
+
+[node name="EventDescription" type="RichTextLabel" parent="EventCanvas/EventUIContainer/EventDescriptionContainer"]
+layout_mode = 2
+
+[node name="ChoiceContainer" type="CenterContainer" parent="EventCanvas/EventUIContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="EventCanvas/EventUIContainer/ChoiceContainer"]
+layout_mode = 2
+
+[node name="Option1" type="Button" parent="EventCanvas/EventUIContainer/ChoiceContainer"]
+layout_mode = 2
+
+[node name="Option2" type="Button" parent="EventCanvas/EventUIContainer/ChoiceContainer"]
+layout_mode = 2
+
+[node name="Option3" type="Button" parent="EventCanvas/EventUIContainer/ChoiceContainer"]
+layout_mode = 2
