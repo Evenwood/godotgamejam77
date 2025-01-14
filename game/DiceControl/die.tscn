@@ -2,45 +2,6 @@
 
 [ext_resource type="Script" path="res://DiceControl/die.gd" id="1_3ftiu"]
 
-[sub_resource type="Animation" id="Animation_qaasp"]
-resource_name = "roll"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:rotation")
-tracks/0/interp = 2
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [0.0, 0.109956, 0.219911, 0.328122, 0.0]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("Sprite2D:scale")
-tracks/1/interp = 2
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 1),
-"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0.25, 0.25), Vector2(0.3, 0.2), Vector2(0.2, 0.3), Vector2(0.275, 0.225), Vector2(0.25, 0.25)]
-}
-tracks/2/type = "value"
-tracks/2/imported = false
-tracks/2/enabled = false
-tracks/2/path = NodePath("Sprite2D:position")
-tracks/2/interp = 2
-tracks/2/loop_wrap = true
-tracks/2/keys = {
-"times": PackedFloat32Array(0, 0.2, 0.4, 0.633333, 0.9),
-"transitions": PackedFloat32Array(1.03526, 1, 1, 1, 1),
-"update": 0,
-"values": [Vector2(0, 344), Vector2(651, 344), Vector2(651, 344), Vector2(651, 344), Vector2(651, 344)]
-}
-
 [sub_resource type="Animation" id="Animation_hagik"]
 length = 0.001
 tracks/0/type = "value"
@@ -80,6 +41,45 @@ tracks/2/keys = {
 "values": [Vector2(651, 344)]
 }
 
+[sub_resource type="Animation" id="Animation_qaasp"]
+resource_name = "roll"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:rotation")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.109956, 0.219911, 0.328122, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:scale")
+tracks/1/interp = 2
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.6, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0.25, 0.25), Vector2(0.3, 0.2), Vector2(0.2, 0.3), Vector2(0.275, 0.225), Vector2(0.25, 0.25)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = false
+tracks/2/path = NodePath("Sprite2D:position")
+tracks/2/interp = 2
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.4, 0.633333, 0.9),
+"transitions": PackedFloat32Array(1.03526, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(651, 344), Vector2(651, 344), Vector2(651, 344), Vector2(651, 344), Vector2(651, 344)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_lvc3h"]
 _data = {
 "RESET": SubResource("Animation_hagik"),
@@ -92,13 +92,6 @@ script = ExtResource("1_3ftiu")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(651, 344)
 scale = Vector2(0.25, 0.25)
-
-[node name="ValueLabel" type="Label" parent="."]
-anchors_preset = -1
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
-grow_horizontal = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

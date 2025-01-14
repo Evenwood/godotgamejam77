@@ -4,7 +4,6 @@ extends Node2D
 # References to nodes
 @onready var sprite: Sprite2D = $Sprite2D
 @onready var animation_player: AnimationPlayer = $AnimationPlayer
-@onready var value_label: Label = $ValueLabel
 
 # Die properties
 var value: int = 1
@@ -45,4 +44,3 @@ func roll() -> int:
 func update_face():
 	# Update sprite texture based on current value
 	sprite.texture = die_textures[value]
-	value_label.text = str(value)
