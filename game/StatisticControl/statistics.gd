@@ -16,62 +16,10 @@ func _process(delta: float) -> void:
 	pass
 	
 func negativeCorrelation(statistic: String, val: int) -> void:
-	match statistic:
-		"education":
-			increaseStatistic("education", floor(val/CORRELATION_QUOTIENT))
-		"faith":
-			pass
-		"food":
-			pass
-		"foreign relations":
-			pass
-		"freedom":
-			pass
-		"health":
-			pass
-		"influence":
-			pass
-		"magic":
-			pass
-		"materials":
-			pass
-		"military strength":
-			pass
-		"population":
-			pass
-		"wealth":
-			pass
-		_:
-			pass
+	decreaseStatistic(statistic, floor(val/CORRELATION_QUOTIENT))
 			
 func positiveCorrelation(statistic: String, val: int) -> void:
-	match statistic:
-		"education":
-			decreaseStatistic("education", floor(val/CORRELATION_QUOTIENT))
-		"faith":
-			pass
-		"food":
-			pass
-		"foreign relations":
-			pass
-		"freedom":
-			pass
-		"health":
-			pass
-		"influence":
-			pass
-		"magic":
-			pass
-		"materials":
-			pass
-		"military strength":
-			pass
-		"population":
-			pass
-		"wealth":
-			pass
-		_:
-			pass
+	increaseStatistic(statistic, floor(val/CORRELATION_QUOTIENT))
 
 func checkCorrelation(val: int) -> bool:
 	if(floor(val/CORRELATION_QUOTIENT) > 1):
