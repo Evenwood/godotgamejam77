@@ -1,3 +1,61 @@
 [gd_scene format=3 uid="uid://dxayhd2enrxhi"]
 
-[node name="Event" type="Node"]
+[node name="Event" type="Control"]
+layout_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="EventCanvas" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="EventCanvas"]
+anchors_preset = -1
+anchor_left = 0.302344
+anchor_top = 0.00416667
+anchor_right = 0.670313
+anchor_bottom = 0.993056
+offset_left = -387.0
+offset_top = -3.0
+offset_right = -498.0
+offset_bottom = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0901961, 0.0666667, 0.352941, 0.705882)
+metadata/_edit_use_anchors_ = true
+
+[node name="EventUIContainer" type="VBoxContainer" parent="EventCanvas"]
+anchors_preset = -1
+anchor_right = 0.28125
+anchor_bottom = 1.0
+metadata/_edit_use_anchors_ = true
+
+[node name="EventName" type="Label" parent="EventCanvas/EventUIContainer"]
+layout_mode = 2
+text = "Event Name"
+horizontal_alignment = 1
+uppercase = true
+
+[node name="EventDescriptionContainer" type="HBoxContainer" parent="EventCanvas/EventUIContainer"]
+layout_mode = 2
+
+[node name="EventImage" type="TextureRect" parent="EventCanvas/EventUIContainer/EventDescriptionContainer"]
+layout_mode = 2
+
+[node name="EventDescription" type="RichTextLabel" parent="EventCanvas/EventUIContainer/EventDescriptionContainer"]
+layout_mode = 2
+
+[node name="ChoiceContainer" type="CenterContainer" parent="EventCanvas/EventUIContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EventCanvas/EventUIContainer/ChoiceContainer"]
+layout_mode = 2
+
+[node name="Option1" type="Button" parent="EventCanvas/EventUIContainer/ChoiceContainer/VBoxContainer"]
+layout_mode = 2
+text = "Option 1"
+
+[node name="Option2" type="Button" parent="EventCanvas/EventUIContainer/ChoiceContainer/VBoxContainer"]
+layout_mode = 2
+text = "Option 2"
+
+[node name="Option3" type="Button" parent="EventCanvas/EventUIContainer/ChoiceContainer/VBoxContainer"]
+layout_mode = 2
+text = "Option 3"
