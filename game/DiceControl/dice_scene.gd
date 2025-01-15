@@ -14,6 +14,8 @@ const MIN_DICE = 1
 const MAX_DICE = 10
 const DICE_SPACING = 100  # Spacing between dice
 
+var num_dice = 1
+
 func _ready():
 	# Setup UI elements
 	num_dice_spinner.min_value = MIN_DICE
@@ -31,7 +33,7 @@ func _on_roll_button_pressed():
 	for die in dice_container.get_children():
 		die.queue_free()
 	
-	var num_dice = int(num_dice_spinner.value)
+	num_dice = int(num_dice_spinner.value)
 	var total = 0
 	var results = []
 	

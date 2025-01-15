@@ -12,6 +12,7 @@ var value: int = 1
 var is_rolling: bool = false
 var dragging = false
 var click_offset = Vector2()
+var current_drop_zone = null
 
 # Textures for die faces - you'll need to create these
 var die_textures = {
@@ -26,6 +27,8 @@ var die_textures = {
 func _ready():
 	area.input_pickable = true
 	area.connect("input_event", _on_input_event)
+	area.connect("area_entered", _on_area_entered)
+	area.connect("area_exited", _on_area_exited)
 	roll()
 
 func roll() -> int:
@@ -71,6 +74,9 @@ func _on_input_event(_viewport, event, _shape_idx):
 				# Stop dragging
 				dragging = false
 				change_appearance(dragging)
+				# Are we over the drop zone?
+				if current_drop_zone:
+					current_drop_zone.emit_signal("item_dropped", self)
 
 func _process(_delta):
 	if dragging:
@@ -83,3 +89,11 @@ func change_appearance(is_dragging: bool):
 	else:
 		sprite.modulate = Color(1, 1, 1, 1)
 		sprite.scale = Vector2(.25, .25)
+		
+func _on_area_entered(area):
+	if area.is_in_group("drop_zone"):
+		current_drop_zone = area
+		
+func _on_area_exited(area):
+	if area == current_drop_zone:
+		current_drop_zone = null

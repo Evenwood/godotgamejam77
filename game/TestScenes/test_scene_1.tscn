@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://coc0nbxe2cf5b"]
+
+[ext_resource type="PackedScene" uid="uid://cn8p8gir5v5ib" path="res://DiceControl/dice_scene.tscn" id="1_up560"]
+[ext_resource type="PackedScene" uid="uid://2vpyof5hxpag" path="res://DropZoneControl/drop_zone.tscn" id="2_j8tmv"]
+
+[node name="TestScene1" type="Node2D"]
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(1000, 400)
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_right = 1000.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 0
+
+[node name="DiceScene" parent="MarginContainer" instance=ExtResource("1_up560")]
+
+[node name="DropZone1" parent="." instance=ExtResource("2_j8tmv")]
+
+[node name="DropZone2" parent="." instance=ExtResource("2_j8tmv")]

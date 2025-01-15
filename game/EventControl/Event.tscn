@@ -2,6 +2,7 @@
 
 [node name="Event" type="Control"]
 layout_mode = 3
+anchors_preset = 0
 metadata/_edit_use_anchors_ = true
 
 [node name="EventCanvas" type="CanvasLayer" parent="."]
