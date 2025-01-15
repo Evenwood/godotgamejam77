@@ -1,7 +1,11 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxayhd2enrxhi"]
+[gd_scene load_steps=4 format=3 uid="uid://dxayhd2enrxhi"]
 
 [ext_resource type="Script" path="res://EventControl/event.gd" id="1_rgnu6"]
 [ext_resource type="Texture2D" uid="uid://uwx3gpirfrsv" path="res://Assets/test-event-image.png" id="1_strl5"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_ibdnr"]
+color = Color(0.381703, 0.381703, 0.381703, 1)
+thickness = 2
 
 [node name="Event" type="Control"]
 layout_mode = 3
@@ -13,14 +17,9 @@ metadata/_edit_use_anchors_ = true
 
 [node name="ColorRect" type="ColorRect" parent="EventCanvas"]
 anchors_preset = -1
-anchor_left = 0.302344
-anchor_top = 0.00416667
-anchor_right = 0.670313
-anchor_bottom = 0.993056
-offset_left = -387.0
-offset_top = -3.0
-offset_right = -498.0
-offset_bottom = 5.0
+anchor_right = 0.28125
+anchor_bottom = 1.0
+offset_bottom = -6.10352e-05
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.0901961, 0.0666667, 0.352941, 0.705882)
@@ -38,7 +37,13 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 30
 text = "Event Name"
 horizontal_alignment = 1
+vertical_alignment = 1
 uppercase = true
+
+[node name="HSeparator" type="HSeparator" parent="EventCanvas/EventUIContainer"]
+layout_mode = 2
+theme_override_constants/separation = 1
+theme_override_styles/separator = SubResource("StyleBoxLine_ibdnr")
 
 [node name="EventDescriptionContainer" type="HBoxContainer" parent="EventCanvas/EventUIContainer"]
 layout_mode = 2
