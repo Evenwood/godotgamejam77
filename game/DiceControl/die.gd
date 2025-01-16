@@ -13,6 +13,10 @@ var is_rolling: bool = false
 var dragging = false
 var click_offset = Vector2()
 var current_drop_zone = null
+var orig_position = Vector2.ZERO
+
+const SPRITE_SCALE_X = .10
+const SPRITE_SCALE_Y = .10
 
 # Textures for die faces - you'll need to create these
 var die_textures = {
@@ -29,6 +33,8 @@ func _ready():
 	area.connect("input_event", _on_input_event)
 	area.connect("area_entered", _on_area_entered)
 	area.connect("area_exited", _on_area_exited)
+	sprite.scale = Vector2(SPRITE_SCALE_X, SPRITE_SCALE_Y)
+	set_up_scale_animation()
 	roll()
 
 func roll() -> int:
@@ -67,6 +73,7 @@ func _on_input_event(_viewport, event, _shape_idx):
 			if event.pressed:
 				# Start dragging
 				dragging = true
+				orig_position = position
 				# Store the offset between mouse position and node position
 				click_offset = position - get_global_mouse_position()
 				change_appearance(dragging)
@@ -77,6 +84,8 @@ func _on_input_event(_viewport, event, _shape_idx):
 				# Are we over the drop zone?
 				if current_drop_zone:
 					current_drop_zone.emit_signal("item_dropped", self)
+				else:
+					position = orig_position
 
 func _process(_delta):
 	if dragging:
@@ -88,7 +97,7 @@ func change_appearance(is_dragging: bool):
 		sprite.scale = Vector2(sprite.scale.x + .01, sprite.scale.y + .01)
 	else:
 		sprite.modulate = Color(1, 1, 1, 1)
-		sprite.scale = Vector2(.25, .25)
+		sprite.scale = Vector2(SPRITE_SCALE_X, SPRITE_SCALE_Y)
 		
 func _on_area_entered(area):
 	if area.is_in_group("drop_zone"):
@@ -97,3 +106,29 @@ func _on_area_entered(area):
 func _on_area_exited(area):
 	if area == current_drop_zone:
 		current_drop_zone = null
+		
+func set_up_scale_animation():
+	var animation = animation_player.get_animation("roll")
+	var scale_track = animation.find_track("Sprite2D:scale", Animation.TYPE_VALUE)
+	var random_number = (randi() % 3 + 1) * 0.01  # Will give 0.01, 0.02, 0.03
+	var keyframes = [
+		{"time": 0.0, "value":Vector2(SPRITE_SCALE_X, SPRITE_SCALE_Y)},
+		{"time": 0.2, "value":Vector2(SPRITE_SCALE_X + random_number, SPRITE_SCALE_Y - random_number)},
+		{"time": 0.4, "value":Vector2(SPRITE_SCALE_X - random_number, SPRITE_SCALE_Y + random_number)},
+		{"time": 0.6, "value":Vector2(SPRITE_SCALE_X + random_number, SPRITE_SCALE_Y - random_number)},
+		{"time": 0.8, "value":Vector2(SPRITE_SCALE_X - random_number, SPRITE_SCALE_Y + random_number)},
+		{"time": 1.0, "value":Vector2(SPRITE_SCALE_X, SPRITE_SCALE_Y)}
+	]
+	
+	# Clear existing keys
+	animation.track_remove_key_at_time(scale_track, 0.0)
+	animation.track_remove_key_at_time(scale_track, 0.2)
+	animation.track_remove_key_at_time(scale_track, 0.4)
+	animation.track_remove_key_at_time(scale_track, 0.6)
+	animation.track_remove_key_at_time(scale_track, 0.8)
+	animation.track_remove_key_at_time(scale_track, 1.0)
+	
+	# Add new keys at specific times
+	for keyframe in keyframes:
+		animation.track_insert_key(scale_track, keyframe.time, keyframe.value)
+	

@@ -9,6 +9,11 @@ func _ready() -> void:
 	input_pickable = true
 	connect("area_entered", _on_area_entered)
 	connect("area_exited", _on_area_exited)
+	
+	var sprite = ColorRect.new()  # Or use a Sprite2D
+	add_child(sprite)
+	sprite.size = Vector2(50, 50)
+
 	modulate = Color(1, 1, 1, 0.5)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
