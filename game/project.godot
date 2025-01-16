@@ -29,6 +29,7 @@ Materials="*res://StatisticControl/Resources/materials.tres"
 MilitaryStrength="*res://StatisticControl/Resources/military_strength.tres"
 Population="*res://StatisticControl/Resources/population.tres"
 Wealth="*res://StatisticControl/Resources/wealth.tres"
+Datatypes="*res://datatypes.gd"
 
 [display]
 
