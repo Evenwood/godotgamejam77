@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://GUI/main_menu.gd" id="1_8br0w"]
 [ext_resource type="Texture2D" uid="uid://cihejk81mk8cj" path="res://Assets/main_menu.jpg" id="2_hh3ne"]
-[ext_resource type="Theme" uid="uid://xlky6upwwha" path="res://menu-theme.tres" id="3_fr1n2"]
+[ext_resource type="Theme" uid="uid://xlky6upwwha" path="res://Assets/menu-theme.tres" id="3_fr1n2"]
 [ext_resource type="AudioStream" uid="uid://ciloxw376cues" path="res://Assets/That Zen Moment.mp3" id="4_rlu7q"]
 
 [sub_resource type="FontVariation" id="FontVariation_d3deb"]
@@ -55,4 +55,5 @@ text = "Quit"
 stream = ExtResource("4_rlu7q")
 autoplay = true
 
+[connection signal="pressed" from="TextureRect/HBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="TextureRect/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
