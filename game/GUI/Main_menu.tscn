@@ -1,10 +1,16 @@
-[gd_scene load_steps=5 format=3 uid="uid://byechr8qw8rjg"]
+[gd_scene load_steps=8 format=3 uid="uid://byechr8qw8rjg"]
 
 [ext_resource type="Script" path="res://GUI/main_menu.gd" id="1_8br0w"]
 [ext_resource type="Texture2D" uid="uid://cihejk81mk8cj" path="res://Assets/main_menu.jpg" id="2_hh3ne"]
 [ext_resource type="Theme" uid="uid://xlky6upwwha" path="res://menu-theme.tres" id="3_fr1n2"]
+[ext_resource type="AudioStream" uid="uid://ciloxw376cues" path="res://Assets/That Zen Moment.mp3" id="4_rlu7q"]
+
+[sub_resource type="FontVariation" id="FontVariation_d3deb"]
 
 [sub_resource type="Theme" id="Theme_farmr"]
+default_font = SubResource("FontVariation_d3deb")
+
+[sub_resource type="Theme" id="Theme_rsvn6"]
 
 [node name="MainMenu" type="Control"]
 layout_mode = 3
@@ -33,14 +39,20 @@ alignment = 1
 [node name="Label" type="Label" parent="TextureRect/HBoxContainer"]
 layout_mode = 2
 theme = SubResource("Theme_farmr")
+theme_override_colors/font_color = Color(0.0693799, 0.296442, 0.220572, 1)
 text = "Menu:"
 
 [node name="Button" type="Button" parent="TextureRect/HBoxContainer"]
 layout_mode = 2
+theme = SubResource("Theme_rsvn6")
 text = "Start Game"
 
 [node name="Button2" type="Button" parent="TextureRect/HBoxContainer"]
 layout_mode = 2
 text = "Quit"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_rlu7q")
+autoplay = true
 
 [connection signal="pressed" from="TextureRect/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
