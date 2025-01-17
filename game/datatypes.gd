@@ -4,7 +4,7 @@
 
 extends Node
 
-enum ACTIONS {Diplomacy, Clairvoyance, Harvest, Explore, Market, Shrine, Tower, Prison, Barracks, Academy, Charity, Hold}
+enum ACTIONS {Diplomacy, Clairvoyance, Harvest, Explore, Market, Shrine, Tower, Prison, Barracks, Academy, Charity, Hold, Infrastructure, DarkRitual, Warfare, OtherworldlyRitual, Revelry, ForbiddenResearch}
 
 
 # Called when the node enters the scene tree for the first time.

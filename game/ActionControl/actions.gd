@@ -22,6 +22,12 @@ var barracks_mod = 0
 var academy_mod = 0
 var charity_mod = 0
 var hold_mod = 0
+var infrastructure_mod = 0
+var dark_ritual_mod = 0
+var warfare_mod = 0
+var otherworldly_ritual_mod = 0
+var revelry_mod = 0
+var forbidden_research_mod = 0
 var global_mod = 0
 
 # Called when the node enters the scene tree for the first time.
@@ -87,6 +93,26 @@ func triggerAction(actionID: int, val: int) -> void:
 		Datatypes.ACTIONS.Hold:
 			val = modifyValue(hold_mod, val)
 			processHold(val)
+		Datatypes.ACTIONS.Infrastructure:
+			val = modifyValue(infrastructure_mod, val)
+			processHold(val)
+		Datatypes.ACTIONS.DarkRitual:
+			val = modifyValue(dark_ritual_mod, val)
+			processHold(val)
+		Datatypes.ACTIONS.Warfare:
+			val = modifyValue(warfare_mod, val)
+			processHold(val)
+		Datatypes.ACTIONS.OtherworldlyRitual:
+			val = modifyValue(otherworldly_ritual_mod, val)
+			processHold(val)
+		Datatypes.ACTIONS.Revelry:
+			val = modifyValue(revelry_mod, val)
+			processHold(val)
+		Datatypes.ACTIONS.ForbiddenResearch:
+			val = modifyValue(forbidden_research_mod, val)
+			processHold(val)
+		_:
+			pass
 
 func processDiplomacy(val: int) -> void:
 	pass
@@ -122,4 +148,22 @@ func processCharity(val: int) -> void:
 	pass
 
 func processHold(val: int) -> void:
+	pass
+
+func processInfrastructure(val: int) -> void:
+	pass
+
+func processDarkRitual(val: int) -> void:
+	pass
+
+func processWarfare(val: int) -> void:
+	pass
+
+func processOtherworldlyRitual(val: int) -> void:
+	pass
+	
+func processRevelry(val: int) -> void:
+	pass
+	
+func processForbiddenResearch(val: int) -> void:
 	pass
