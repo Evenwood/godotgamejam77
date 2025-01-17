@@ -1,0 +1,12 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://xlky6upwwha"]
+
+[sub_resource type="FontVariation" id="FontVariation_t3tff"]
+spacing_glyph = 1
+spacing_space = 1
+spacing_top = 1
+spacing_bottom = 1
+
+[resource]
+resource_local_to_scene = true
+default_font = SubResource("FontVariation_t3tff")
+default_font_size = 30
