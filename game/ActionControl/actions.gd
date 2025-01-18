@@ -59,6 +59,21 @@ static func actionText(actionID: Datatypes.ACTIONS, val: int) -> String:
 	var text = "WIP - " + str(actionID) + " " + str(val)
 	match actionID:
 		Datatypes.ACTIONS.Diplomacy:
+			#var rng = RandomNumberGenerator.new()
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.ForeignRelations, val * MAJOR_OUTPUT)
+			#var randStat = rng.randi_range(1, 3)
+			#match randStat:
+			#1:
+				#Statistics.increaseStatistic(Datatypes.STATISTICS.Food, val * OUTPUT)
+			#2:
+				#Statistics.increaseStatistic(Datatypes.STATISTICS.Materials, val * OUTPUT)
+			#3:
+				#Statistics.increaseStatistic(Datatypes.STATISTICS.Education, val * OUTPUT)
+			#_:
+			#pass
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Wealth, val * OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Influence, val * REDUCED_OUTPUT)
 			return text
 		Datatypes.ACTIONS.Clairvoyance:
 			return text
