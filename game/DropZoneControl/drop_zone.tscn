@@ -21,3 +21,7 @@ offset_left = 4.0
 offset_top = 66.0
 offset_right = 44.0
 offset_bottom = 89.0
+
+[node name="InfoLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0

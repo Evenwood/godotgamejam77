@@ -1,14 +1,17 @@
 extends Control
 
+@onready var dice_scene: Node2D = $PanelContainer/DiceScene
+
 var dropzone_scene = preload("res://DropZoneControl/drop_zone.tscn")
 var dropzones = []
 var dropzone_positions = {}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	mouse_filter = Control.MOUSE_FILTER_IGNORE
 	load_dropzones()
 	setup_dropzone_positions()
-	print(size)
+	dice_scene.position = Vector2(800, 945)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -30,6 +33,7 @@ func load_dropzones() -> void:
 		elif key == "ForbiddenResearch":
 			text = "Forbidden Research"
 		dropzone.set_label_text(text)
+		dropzone.set_info_text(text)
 		
 		var row = i / grid_columns
 		var col = i % grid_columns

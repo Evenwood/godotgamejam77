@@ -30,8 +30,10 @@ var die_textures = {
 }
 
 func _ready():
+	#print("Die created")
 	add_to_group("dice")
 	area.input_pickable = true
+	area.set_process_input(true)
 	area.connect("input_event", _on_input_event)
 	area.connect("area_entered", _on_area_entered)
 	area.connect("area_exited", _on_area_exited)
@@ -69,7 +71,7 @@ func update_face():
 	hitbox.position = sprite.position
 	
 func _on_input_event(_viewport, event, _shape_idx):
-	# print("Event type: ", event.get_class())
+	#print("Event type: ", event.get_class())
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT:
 			if event.pressed:
