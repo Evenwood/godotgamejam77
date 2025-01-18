@@ -1,6 +1,6 @@
 extends Control
 var paused = false;
-@onready var pause_menu = $PanelContainer2/PauseMenu
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 #func _process(delta):
@@ -20,3 +20,11 @@ var paused = false;
 
 func _on_quit_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_restart_pressed() -> void:
+	get_tree().reload_current_scene()
+
+
+func _on_resume_pressed() -> void:
+	hide()
