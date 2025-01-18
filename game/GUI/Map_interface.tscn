@@ -1,6 +1,15 @@
+<<<<<<< Updated upstream
 [gd_scene load_steps=2 format=3 uid="uid://bblcdjvp3e88x"]
+=======
+[gd_scene load_steps=5 format=3 uid="uid://bblcdjvp3e88x"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Texture2D" uid="uid://dqtb4nyvell4j" path="res://Assets/Game_board.jpg" id="1_7b7h7"]
+<<<<<<< Updated upstream
+=======
+[ext_resource type="PackedScene" uid="uid://cn8p8gir5v5ib" path="res://DiceControl/dice_scene.tscn" id="3_h6jwy"]
+[ext_resource type="PackedScene" uid="uid://cwcup6x6mim5w" path="res://GUI/pause_menu.tscn" id="4_djerr"]
+>>>>>>> Stashed changes
 
 [node name="MapInterface" type="Control"]
 layout_mode = 3
@@ -21,3 +30,14 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("1_7b7h7")
+<<<<<<< Updated upstream
+=======
+
+[node name="DiceScene" parent="PanelContainer" instance=ExtResource("3_h6jwy")]
+scale = Vector2(1.60152, 1.60368)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("4_djerr")]
+visible = false
+>>>>>>> Stashed changes
