@@ -115,56 +115,185 @@ func triggerAction(actionID: Datatypes.ACTIONS, val: int) -> void:
 			pass
 
 func processDiplomacy(val: int) -> void:
-	Statistics.increaseStatistic(Datatypes.STATISTICS.ForeignRelations, val)
+	var rng = RandomNumberGenerator.new()
+	Statistics.increaseStatistic(Datatypes.STATISTICS.ForeignRelations, val * MAJOR_OUTPUT)
+	var randStat = rng.randi_range(1, 3)
+	match randStat:
+		1:
+			Statistics.increaseStatistic(Datatypes.STATISTICS.Food, val * OUTPUT)
+		2:
+			Statistics.increaseStatistic(Datatypes.STATISTICS.Materials, val * OUTPUT)
+		3:
+			Statistics.increaseStatistic(Datatypes.STATISTICS.Education, val * OUTPUT)
+		_:
+			pass
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Wealth, val * OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Influence, val * REDUCED_OUTPUT)
 
 func processClairvoyance(val: int) -> void:
-	Statistics.increaseStatistic(Datatypes.STATISTICS.Education, val)
-	pass
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Education, val * REDUCED_OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Faith, val * REDUCED_OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Magic, val * HIGH_OUTPUT)
 
 func processHarvest(val: int) -> void:
-	pass
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Food, val * HIGH_OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Materials, val * OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Health, val * OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Influence, val * REDUCED_OUTPUT)
 	
 func processExplore(val: int) -> void:
-	pass
+	State.chaos += 1
+	var rng = RandomNumberGenerator.new()
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Freedom, val * HIGH_OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Education, val * REDUCED_OUTPUT)
+	var randStat = rng.randi_range(1, 4)
+	match randStat:
+		1:
+			Statistics.increaseStatistic(Datatypes.STATISTICS.Food, val * OUTPUT)
+		2:
+			Statistics.increaseStatistic(Datatypes.STATISTICS.Magic, val * OUTPUT)
+		3:
+			Statistics.increaseStatistic(Datatypes.STATISTICS.Wealth, val * OUTPUT)
+		4:
+			Statistics.increaseStatistic(Datatypes.STATISTICS.Materials, val * OUTPUT)
+		_:
+			pass
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Influence, val * OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Food, val * HIGH_OUTPUT)
 
 func processMarket(val: int) -> void:
-	pass
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Wealth, val * MAJOR_OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Food, val * OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Materials, val * OUTPUT)
 
 func processShrine(val: int) -> void:
-	pass
+	State.order += 1
+	var rng = RandomNumberGenerator.new()
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Faith, val * HIGH_OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Magic, val * REDUCED_OUTPUT)
+	var randStat = rng.randi_range(1, 3)
+	match randStat:
+		1:
+			Statistics.increaseStatistic(Datatypes.STATISTICS.Health, val * OUTPUT)
+		2:
+			Statistics.increaseStatistic(Datatypes.STATISTICS.Happiness, val * OUTPUT)
+		3:
+			Statistics.increaseStatistic(Datatypes.STATISTICS.Influence, val * OUTPUT)
+		_:
+			pass
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Education, val * OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * REDUCED_OUTPUT)
 
 func processTower(val: int) -> void:
-	pass
+	State.chaos += 1
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Magic, val * HIGH_OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * REDUCED_OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Wealth, val * HIGH_OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Faith, val * REDUCED_OUTPUT)
 
 func processPrison(val: int) -> void:
-	pass
+	State.order += 1
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Influence, val * HIGH_OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Materials, val * OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * REDUCED_OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Freedom, val * HIGH_OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Happiness, val * OUTPUT)
 
 func processBarracks(val: int) -> void:
-	pass
+	State.order += 1
+	Statistics.increaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * MAJOR_OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Influence, val * OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.ForeignRelations, val * HIGH_OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Materials, val * OUTPUT)
 
 func processAcademy(val: int) -> void:
-	pass
+	State.chaos += 1
+	var rng = RandomNumberGenerator.new()
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Education, val * MAJOR_OUTPUT)
+	var randStat = rng.randi_range(1, 8)
+	match randStat:
+		1:
+			Statistics.increaseStatistic(Datatypes.STATISTICS.Wealth, val * REDUCED_OUTPUT)
+		2:
+			Statistics.increaseStatistic(Datatypes.STATISTICS.Freedom, val * REDUCED_OUTPUT)
+		3:
+			Statistics.increaseStatistic(Datatypes.STATISTICS.Magic, val * REDUCED_OUTPUT)
+		4:
+			Statistics.increaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * REDUCED_OUTPUT)
+		5:
+			Statistics.increaseStatistic(Datatypes.STATISTICS.Happiness, val * REDUCED_OUTPUT)
+		6:
+			Statistics.increaseStatistic(Datatypes.STATISTICS.Health, val * REDUCED_OUTPUT)
+		7:
+			Statistics.increaseStatistic(Datatypes.STATISTICS.Faith, val * REDUCED_OUTPUT)
+		8:
+			Statistics.increaseStatistic(Datatypes.STATISTICS.ForeignRelations, val * REDUCED_OUTPUT)
+		_:
+			pass
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Materials, val * HIGH_OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Influence, val * REDUCED_OUTPUT)
 	
 func processCharity(val: int) -> void:
-	pass
+	State.chaos += 1
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Influence, val * OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Happiness, val * OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Health, val * OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Wealth, val * MAJOR_OUTPUT)
 
 func processHold(val: int) -> void:
-	pass
+	State.order += 1
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Influence, val * HIGH_OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Happiness, val * OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * MAJOR_OUTPUT)
 
 func processInfrastructure(val: int) -> void:
-	pass
+	State.order += 1
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Population, val * HIGH_OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Health, val * OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Wealth, val * REDUCED_OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Materials, val * MAJOR_OUTPUT)
 
 func processDarkRitual(val: int) -> void:
-	pass
+	State.order += 1
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Magic, val * HIGH_OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Food, val * REDUCED_OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Materials, val * REDUCED_OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Wealth, val * REDUCED_OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Faith, val * REDUCED_OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Population, val * HIGH_OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Happiness, val * HIGH_OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Influence, val * REDUCED_OUTPUT)
 
 func processWarfare(val: int) -> void:
-	pass
+	State.order += 1
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Freedom, val * OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Wealth, val * OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Materials, val * REDUCED_OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Faith, val * REDUCED_OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Population, val * HIGH_OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Health, val * REDUCED_OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.ForeignRelations, val * REDUCED_OUTPUT)
 
 func processOtherworldlyRitual(val: int) -> void:
-	pass
+	State.chaos += 1
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Population, val * OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Food, val * OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Materials, val * REDUCED_OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Magic, val * HIGH_OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Education, val * REDUCED_OUTPUT)
 	
 func processRevelry(val: int) -> void:
-	pass
+	State.chaos += 1
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Happiness, val * HIGH_OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Freedom, val * OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Faith, val * OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Education, val * OUTPUT)
 	
 func processForbiddenResearch(val: int) -> void:
-	pass
+	State.chaos += 1
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Education, val * HIGH_OUTPUT)
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Freedom, val * OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Faith, val * OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.Health, val * OUTPUT)
+	Statistics.decreaseStatistic(Datatypes.STATISTICS.ForeignRelations, val * OUTPUT)
