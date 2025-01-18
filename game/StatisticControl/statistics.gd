@@ -67,6 +67,10 @@ const MAGIC_NEG_CORRELATION = Datatypes.STATISTICS.Materials
 const FOOD_NEG_CORRELATION = Datatypes.STATISTICS.Wealth
 const HAPPINESS_NEG_CORRELATION = Datatypes.STATISTICS.Faith
 
+# Variables representing each bar and label in the stat screen
+@onready var influenceLabel = $Window/CanvasLayer/Panel/MarginContainer/GridContainer/InfluenceStatSet/Stat
+@onready var influenceBar = $Window/CanvasLayer/Panel/MarginContainer/GridContainer/InfluenceStatSet/ProgressBar
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.
@@ -75,6 +79,10 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+	
+func setBarsandLabels() -> void:
+	influenceLabel.text = "Influence: %d" % [State.influence]
+	influenceBar.value = State.influence
 	
 func negativeCorrelation(statistic: Datatypes.STATISTICS, val: int) -> void:
 	decreaseStatistic(statistic, floor(val/CORRELATION_QUOTIENT))
