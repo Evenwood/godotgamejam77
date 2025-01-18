@@ -11,6 +11,7 @@ extends Node2D
 var value: int = 1
 var is_rolling: bool = false
 var dragging = false
+var dropped = false
 var click_offset = Vector2()
 var current_drop_zone = null
 var orig_position = Vector2.ZERO
@@ -29,6 +30,7 @@ var die_textures = {
 }
 
 func _ready():
+	add_to_group("dice")
 	area.input_pickable = true
 	area.connect("input_event", _on_input_event)
 	area.connect("area_entered", _on_area_entered)

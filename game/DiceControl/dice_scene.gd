@@ -17,7 +17,7 @@ const DICE_SPACING = 50  # Spacing between dice
 var num_dice = 1
 
 func _ready():
-	position = Vector2(-140, 247)
+	add_to_group("dice_scene")
 	# Setup UI elements
 	num_dice_spinner.min_value = MIN_DICE
 	num_dice_spinner.max_value = MAX_DICE
@@ -44,6 +44,7 @@ func _on_roll_button_pressed():
 	# Create and roll each die
 	for i in range(num_dice):
 		var die_instance = die_scene.instantiate()
+		die_instance.name = "die" + str(i)
 		dice_container.add_child(die_instance)
 		
 		# Position the die

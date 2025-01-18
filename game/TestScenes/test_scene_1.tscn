@@ -1,22 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://gv2jtpq48jb4"]
+[gd_scene load_steps=5 format=3 uid="uid://gv2jtpq48jb4"]
 
-[ext_resource type="Texture2D" uid="uid://cakagnvywlb2e" path="res://Assets/Temp/map1.png" id="1_jnadg"]
+[ext_resource type="Texture2D" uid="uid://dqtb4nyvell4j" path="res://Assets/Game_board.jpg" id="1_d1kid"]
+[ext_resource type="Script" path="res://TestScenes/test_scene_1.gd" id="1_riyep"]
 [ext_resource type="PackedScene" uid="uid://cn8p8gir5v5ib" path="res://DiceControl/dice_scene.tscn" id="1_up560"]
 [ext_resource type="PackedScene" uid="uid://2vpyof5hxpag" path="res://DropZoneControl/drop_zone.tscn" id="3_acque"]
 
 [node name="TestScene1" type="Node2D"]
+script = ExtResource("1_riyep")
 metadata/_edit_group_ = true
 
 [node name="TextureRect" type="TextureRect" parent="."]
 offset_right = 1832.0
 offset_bottom = 1025.0
-scale = Vector2(0.7, 0.7)
-texture = ExtResource("1_jnadg")
+scale = Vector2(0.63, 0.63)
+texture = ExtResource("1_d1kid")
 
 [node name="DiceScene" parent="." instance=ExtResource("1_up560")]
 
 [node name="DropZone1" parent="." instance=ExtResource("3_acque")]
-position = Vector2(600, 400)
 
 [node name="DropZone2" parent="." instance=ExtResource("3_acque")]
-position = Vector2(300, 120)
