@@ -32,4 +32,5 @@ offset_right = 40.0
 offset_bottom = 40.0
 
 [node name="PauseMenu" parent="PanelContainer2" instance=ExtResource("4_wtv0c")]
+visible = false
 layout_mode = 2
