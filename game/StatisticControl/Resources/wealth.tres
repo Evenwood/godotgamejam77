@@ -1,9 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://c0vmuvjvc3mt2"]
-
-[ext_resource type="Script" path="res://StatisticControl/base_statistic.gd" id="1_hdqgj"]
-
-[resource]
-script = ExtResource("1_hdqgj")
-name = "Wealth"
-min_value = 0
-max_value = 10000

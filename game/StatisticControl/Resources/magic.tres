@@ -1,9 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cobmdgg2pi2i6"]
-
-[ext_resource type="Script" path="res://StatisticControl/base_statistic.gd" id="1_5toby"]
-
-[resource]
-script = ExtResource("1_5toby")
-name = "Magic"
-min_value = -100
-max_value = 100
