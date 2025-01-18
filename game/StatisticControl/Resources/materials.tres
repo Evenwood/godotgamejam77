@@ -1,9 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://yh8vpa3dgcx"]
-
-[ext_resource type="Script" path="res://StatisticControl/base_statistic.gd" id="1_xh6jc"]
-
-[resource]
-script = ExtResource("1_xh6jc")
-name = "Materials"
-min_value = 0
-max_value = 10000

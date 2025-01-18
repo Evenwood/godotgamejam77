@@ -1,9 +1,0 @@
-[gd_resource type="Resource" load_steps=2 format=3 uid="uid://6hjmhi448g07"]
-
-[ext_resource type="Script" path="res://StatisticControl/base_statistic.gd" id="1_65b3j"]
-
-[resource]
-script = ExtResource("1_65b3j")
-name = "Influence"
-min_value = -100
-max_value = 100

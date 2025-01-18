@@ -5,7 +5,7 @@
 extends Node
 
 enum ACTIONS {Diplomacy, Clairvoyance, Harvest, Explore, Market, Shrine, Tower, Prison, Barracks, Academy, Charity, Hold, Infrastructure, DarkRitual, Warfare, OtherworldlyRitual, Revelry, ForbiddenResearch}
-
+enum STATISTICS {Influence, Wealth, Freedom, Health, Faith, Education, ForeignRelations, MilitaryStrength, Population, Materials, Magic, Food, Happiness}
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -55,7 +55,7 @@ func modifyValue(modifier: int, val: int) -> int:
 	
 	return val
 
-func triggerAction(actionID: int, val: int) -> void:
+func triggerAction(actionID: Datatypes.ACTIONS, val: int) -> void:
 	match actionID:
 		Datatypes.ACTIONS.Diplomacy:
 			val = modifyValue(diplomacy_mod, val)
@@ -115,9 +115,10 @@ func triggerAction(actionID: int, val: int) -> void:
 			pass
 
 func processDiplomacy(val: int) -> void:
-	pass
+	Statistics.increaseStatistic(Datatypes.STATISTICS.ForeignRelations, val)
 
 func processClairvoyance(val: int) -> void:
+	Statistics.increaseStatistic(Datatypes.STATISTICS.Education, val)
 	pass
 
 func processHarvest(val: int) -> void:
