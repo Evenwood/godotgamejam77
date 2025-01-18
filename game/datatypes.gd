@@ -87,6 +87,7 @@ static var minor_event_strings = {
 	MINOR_EVENTS.DarkDiscovery: "Dark Discovery", 
 	MINOR_EVENTS.EvilAdvances: "Evil Advances", 
 	MINOR_EVENTS.Miracle: "Miracle"
+}
 
 static var statistics_strings = {
 	STATISTICS.Influence: "Influence",
@@ -123,4 +124,3 @@ static func get_minor_event_string(value):
   
 static func get_statistics_string(value):
 	return statistics_strings.get(value, "UNKNOWN")
-
