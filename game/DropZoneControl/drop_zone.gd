@@ -17,6 +17,7 @@ var action_id = Datatypes.ACTIONS.Diplomacy
 var die_value = 1
 var dialog = ConfirmationDialog.new()
 var dropped_die = null
+var filled = false
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -37,6 +38,8 @@ func _process(delta: float) -> void:
 	pass
 	
 func on_area_entered(area) -> void:
+	if filled:
+		return
 	sprite.modulate = Color(0, 1, 0, 0.5) # Green tint
 	set_info_text(Actions.actionText(action_id, die_value))
 	show_info()
@@ -84,12 +87,16 @@ func set_action_id(id):
 	action_id = id
 	
 func _on_item_dropped(item):
+	if filled:
+		return
 	item.dropped = true
 	#print("Drop Zone")
 	dropped_die = item
 	#dialog.popup_centered()
 	info_label.hide()
-	dialog.dialog_text = info_label.text + "\nAre you sure you want to drop the die here?" 
+	dialog.dialog_text = "Die Value: " + str(dropped_die.value) + "\n" + \
+		info_label.text + \
+		"\nAre you sure you want to drop the die here?" 
 	dialog.popup_centered()
 	#print("--------")
 
@@ -120,7 +127,12 @@ func _on_confirmed():
 	var dice_scene = get_tree().root.find_child("DiceScene", true, false)
 	dropped_die.position = dice_scene.to_local(global_position + sprite.size / 2)
 	dropped_die.z_index = z_index + 1 # Move it in front
+	filled = true
 
 func _on_canceled():
 	#print("User canceled")
+	filled = false
 	dropped_die.cancel_drop()
+	
+func has_dropped_die():
+	return filled
