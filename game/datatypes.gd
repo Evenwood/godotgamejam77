@@ -6,6 +6,9 @@ extends Node
 
 enum ACTIONS {Diplomacy, Clairvoyance, Harvest, Explore, Market, Shrine, Tower, Prison, Barracks, Academy, Charity, Hold, Infrastructure, DarkRitual, Warfare, OtherworldlyRitual, Revelry, ForbiddenResearch}
 enum STATISTICS {Influence, Wealth, Freedom, Health, Faith, Education, ForeignRelations, MilitaryStrength, Population, Materials, Magic, Food, Happiness}
+enum MINOR_EVENTS {}
+enum MAJOR_EVENTS {}
+
 
 static var  action_strings = {
 	ACTIONS.Diplomacy: "Diplomacy",
