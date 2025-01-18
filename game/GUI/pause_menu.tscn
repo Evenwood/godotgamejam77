@@ -42,11 +42,11 @@ color = Color(0.140972, 0.172511, 0.211244, 0.721569)
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 0
-offset_left = 280.0
-offset_top = 188.0
-offset_right = 566.0
-offset_bottom = 411.0
-scale = Vector2(1.48369, 1.48371)
+offset_left = 992.0
+offset_top = 138.0
+offset_right = 1226.0
+offset_bottom = 361.0
+scale = Vector2(1.22094, 1.24322)
 theme = SubResource("Theme_sbdxu")
 theme_override_constants/margin_left = 50
 theme_override_constants/margin_top = 50
