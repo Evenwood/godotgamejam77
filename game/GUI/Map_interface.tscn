@@ -3,12 +3,18 @@
 =======
 [gd_scene load_steps=5 format=3 uid="uid://bblcdjvp3e88x"]
 >>>>>>> Stashed changes
+=======
+[gd_scene load_steps=5 format=3 uid="uid://bblcdjvp3e88x"]
+>>>>>>> Stashed changes
 
 [ext_resource type="Texture2D" uid="uid://dqtb4nyvell4j" path="res://Assets/Game_board.jpg" id="1_7b7h7"]
 <<<<<<< Updated upstream
 =======
 [ext_resource type="PackedScene" uid="uid://cn8p8gir5v5ib" path="res://DiceControl/dice_scene.tscn" id="3_h6jwy"]
 [ext_resource type="PackedScene" uid="uid://cwcup6x6mim5w" path="res://GUI/pause_menu.tscn" id="4_djerr"]
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 
 [node name="MapInterface" type="Control"]
@@ -40,4 +46,7 @@ scale = Vector2(1.60152, 1.60368)
 
 [node name="PauseMenu" parent="CanvasLayer" instance=ExtResource("4_djerr")]
 visible = false
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
