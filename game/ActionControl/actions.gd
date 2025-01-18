@@ -630,7 +630,7 @@ func processCharity(val: int) -> void:
 func processHold(val: int) -> void:
 	State.order += 1
 	StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Influence, val * HIGH_OUTPUT)
-	StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Happiness, val * OUTPUT)
+	StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Happiness, val * OUTPUT)
 	StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * MAJOR_OUTPUT)
 
 func processInfrastructure(val: int) -> void:
