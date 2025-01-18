@@ -56,58 +56,387 @@ func modifyValue(modifier: int, val: int) -> int:
 	return val
 
 static func actionText(actionID: Datatypes.ACTIONS, val: int) -> String:
-	var text = "WIP - " + str(actionID) + " " + str(val)
+	var text = "WIP - " + Datatypes.get_action_string(actionID) + " " + str(val)
 	match actionID:
 		Datatypes.ACTIONS.Diplomacy:
 			#var rng = RandomNumberGenerator.new()
 			#Statistics.increaseStatistic(Datatypes.STATISTICS.ForeignRelations, val * MAJOR_OUTPUT)
-			#var randStat = rng.randi_range(1, 3)
-			#match randStat:
-			#1:
-				#Statistics.increaseStatistic(Datatypes.STATISTICS.Food, val * OUTPUT)
-			#2:
-				#Statistics.increaseStatistic(Datatypes.STATISTICS.Materials, val * OUTPUT)
-			#3:
-				#Statistics.increaseStatistic(Datatypes.STATISTICS.Education, val * OUTPUT)
-			#_:
-			#pass
+			text = Datatypes.get_action_string(actionID)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.ForeignRelations) \
+				+ " + " + str(val * MAJOR_OUTPUT)
+				
+			text += "\n" + "One of (at random):"
+			text += "\n  " + Datatypes.get_statistics_string(Datatypes.STATISTICS.Food) \
+				+ " + " + str(val * OUTPUT)
+			text += "\n  " + Datatypes.get_statistics_string(Datatypes.STATISTICS.Materials) \
+				+ " + " + str(val * OUTPUT)
+			text += "\n  " + Datatypes.get_statistics_string(Datatypes.STATISTICS.Education) \
+				+ " + " + str(val * OUTPUT)
+
 			#Statistics.decreaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.MilitaryStrength) \
+				+ " - " + str(val * OUTPUT)
 			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Wealth, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Wealth) \
+				+ " - " + str(val * OUTPUT)
 			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Influence, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Influence) \
+				+ " - " + str(val * REDUCED_OUTPUT)
 			return text
 		Datatypes.ACTIONS.Clairvoyance:
+			text = Datatypes.get_action_string(actionID)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Education, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Education) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Faith, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Faith) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Magic, val * HIGH_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Magic) \
+				+ " - " + str(val * HIGH_OUTPUT)
 			return text
 		Datatypes.ACTIONS.Harvest:
+			text = Datatypes.get_action_string(actionID)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Food, val * HIGH_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Food) \
+				+ " + " + str(val * HIGH_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Materials, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Materials) \
+				+ " + " + str(val * OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Health, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Health) \
+				+ " - " + str(val * OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Influence, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Influence) \
+				+ " - " + str(val * REDUCED_OUTPUT)
 			return text
 		Datatypes.ACTIONS.Explore:
+			text = Datatypes.get_action_string(actionID)
+			#State.chaos += 1
+			text += "\nChaos +"
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Freedom, val * HIGH_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Freedom) \
+				+ " + " + str(val * HIGH_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Education, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Education) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			#Random 1-4
+			text += "\nOne of (at random)"
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Food, val * OUTPUT)
+			text += "\n   " + Datatypes.get_statistics_string(Datatypes.STATISTICS.Food) \
+				+ " + " + str(val * OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Magic, val * OUTPUT)
+			text += "\n   " + Datatypes.get_statistics_string(Datatypes.STATISTICS.Magic) \
+				+ " + " + str(val * OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Wealth, val * OUTPUT)
+			text += "\n   " + Datatypes.get_statistics_string(Datatypes.STATISTICS.Wealth) \
+				+ " + " + str(val * OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Materials, val * OUTPUT)
+			text += "\n   " + Datatypes.get_statistics_string(Datatypes.STATISTICS.Materials) \
+				+ " + " + str(val * OUTPUT)
+			
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Influence, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Influence) \
+				+ " - " + str(val * OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Food, val * HIGH_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Food) \
+				+ " - " + str(val * OUTPUT)
 			return text
 		Datatypes.ACTIONS.Market:
+			text = Datatypes.get_action_string(actionID)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Wealth, val * MAJOR_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Wealth) \
+				+ " + " + str(val * MAJOR_OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Food, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Food) \
+				+ " - " + str(val * OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Materials, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Materials) \
+				+ " - " + str(val * OUTPUT)
 			return text
 		Datatypes.ACTIONS.Shrine:
+			text = Datatypes.get_action_string(actionID)
+			#State.order += 1
+			text += "\nOrder +"
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Faith, val * HIGH_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Faith) \
+				+ " + " + str(val * HIGH_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Magic, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Magic) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			#Random 1-3
+			text += "\nOne of (at random)"
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Health, val * OUTPUT)
+			text += "\n   " + Datatypes.get_statistics_string(Datatypes.STATISTICS.Health) \
+				+ " + " + str(val * OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Happiness, val * OUTPUT)
+			text += "\n   " + Datatypes.get_statistics_string(Datatypes.STATISTICS.Happiness) \
+				+ " + " + str(val * OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Influence, val * OUTPUT)
+			text += "\n   " + Datatypes.get_statistics_string(Datatypes.STATISTICS.Influence) \
+				+ " + " + str(val * OUTPUT)
+				
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Education, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Education) \
+				+ " - " + str(val * OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.MilitaryStrength) \
+				+ " - " + str(val * REDUCED_OUTPUT)
 			return text
 		Datatypes.ACTIONS.Tower:
+			text = Datatypes.get_action_string(actionID)
+			#State.chaos += 1
+			text += "\nChaos +"
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Magic, val * HIGH_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Magic) \
+				+ " + " + str(val * HIGH_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.MilitaryStrength) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Wealth, val * HIGH_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Wealth) \
+				+ " - " + str(val * HIGH_OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Faith, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Faith) \
+				+ " - " + str(val * REDUCED_OUTPUT)
 			return text
 		Datatypes.ACTIONS.Prison:
+			text = Datatypes.get_action_string(actionID)
+			#State.order += 1
+			text += "\nOrder +"
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Influence, val * HIGH_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Influence) \
+				+ " + " + str(val * HIGH_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Materials, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Materials) \
+				+ " + " + str(val * OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.MilitaryStrength) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Freedom, val * HIGH_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Freedom) \
+				+ " - " + str(val * HIGH_OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Happiness, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Happiness) \
+				+ " - " + str(val * OUTPUT)
 			return text
 		Datatypes.ACTIONS.Barracks:
+			text = Datatypes.get_action_string(actionID)
+			#State.order += 1
+			text += "\nOrder +"
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * MAJOR_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.MilitaryStrength) \
+				+ " + " + str(val * MAJOR_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Influence, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Influence) \
+				+ " + " + str(val * OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.ForeignRelations, val * HIGH_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.ForeignRelations) \
+				+ " - " + str(val * HIGH_OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Materials, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Materials) \
+				+ " - " + str(val * OUTPUT)
 			return text
 		Datatypes.ACTIONS.Academy:
+			text = Datatypes.get_action_string(actionID)
+			#State.chaos += 1
+			text += "\nChaos +"
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Education, val * MAJOR_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Education) \
+				+ " + " + str(val * MAJOR_OUTPUT)
+			#Random 1-8
+			text += "\nOne of (at random)"
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Wealth, val * REDUCED_OUTPUT)
+			text += "\n   " + Datatypes.get_statistics_string(Datatypes.STATISTICS.Wealth) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Freedom, val * REDUCED_OUTPUT)
+			text += "\n   " + Datatypes.get_statistics_string(Datatypes.STATISTICS.Freedom) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Magic, val * REDUCED_OUTPUT)
+			text += "\n   " + Datatypes.get_statistics_string(Datatypes.STATISTICS.Magic) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * REDUCED_OUTPUT)
+			text += "\n   " + Datatypes.get_statistics_string(Datatypes.STATISTICS.MilitaryStrength) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Happiness, val * REDUCED_OUTPUT)
+			text += "\n   " + Datatypes.get_statistics_string(Datatypes.STATISTICS.Happiness) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Health, val * REDUCED_OUTPUT)
+			text += "\n   " + Datatypes.get_statistics_string(Datatypes.STATISTICS.Health) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Faith, val * REDUCED_OUTPUT)
+			text += "\n   " + Datatypes.get_statistics_string(Datatypes.STATISTICS.Faith) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.ForeignRelations, val * REDUCED_OUTPUT)
+			text += "\n   " + Datatypes.get_statistics_string(Datatypes.STATISTICS.ForeignRelations) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Materials, val * HIGH_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Materials) \
+				+ " - " + str(val * HIGH_OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Influence, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Influence) \
+				+ " - " + str(val * REDUCED_OUTPUT)
 			return text
 		Datatypes.ACTIONS.Charity:
+			text = Datatypes.get_action_string(actionID)
+			#State.chaos += 1
+			text += "\nChaos +"
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Influence, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Influence) \
+				+ " + " + str(val * OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Happiness, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Happiness) \
+				+ " + " + str(val * OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Health, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Health) \
+				+ " - " + str(val * OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Wealth, val * MAJOR_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Wealth) \
+				+ " - " + str(val * MAJOR_OUTPUT)
 			return text
 		Datatypes.ACTIONS.Hold:
+			text = Datatypes.get_action_string(actionID)
+			#State.order += 1
+			text += "\nOrder +"
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Influence, val * HIGH_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Influence) \
+				+ " + " + str(val * HIGH_OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Happiness, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Happiness) \
+				+ " - " + str(val * OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * MAJOR_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.MilitaryStrength) \
+				+ " - " + str(val * MAJOR_OUTPUT)
 			return text
 		Datatypes.ACTIONS.Infrastructure:
+			text = Datatypes.get_action_string(actionID)
+			#State.order += 1
+			text += "\nOrder +"
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Population, val * HIGH_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Population) \
+				+ " + " + str(val * HIGH_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Health, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Health) \
+				+ " + " + str(val * OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Wealth, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Wealth) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Materials, val * MAJOR_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Materials) \
+				+ " - " + str(val * MAJOR_OUTPUT)
 			return text
 		Datatypes.ACTIONS.DarkRitual:
+			text = Datatypes.get_action_string(actionID)
+			#State.order += 1
+			text += "\nOrder +"
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Magic, val * HIGH_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Magic) \
+				+ " + " + str(val * HIGH_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Food, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Food) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Materials, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Materials) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Wealth, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Wealth) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Faith, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Faith) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Population, val * HIGH_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Population) \
+				+ " - " + str(val * HIGH_OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Happiness, val * HIGH_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Happiness) \
+				+ " - " + str(val * HIGH_OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Influence, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Influence) \
+				+ " - " + str(val * REDUCED_OUTPUT)
 			return text
 		Datatypes.ACTIONS.Warfare:
+			text = Datatypes.get_action_string(actionID)
+			#State.order += 1
+			text += "\nOrder +"
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Freedom, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Freedom) \
+				+ " + " + str(val * OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Wealth, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Wealth) \
+				+ " + " + str(val * OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Materials, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Materials) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Faith, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Faith) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Population, val * HIGH_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Population) \
+				+ " - " + str(val * HIGH_OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Health, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Health) \
+				+ " - " + str(val * REDUCED_OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.ForeignRelations, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.ForeignRelations) \
+				+ " - " + str(val * REDUCED_OUTPUT)
 			return text
 		Datatypes.ACTIONS.OtherworldlyRitual:
+			text = Datatypes.get_action_string(actionID)
+			#State.chaos += 1
+			text += "\nChaos +"
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Population, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Population) \
+				+ " + " + str(val * OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Food, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Food) \
+				+ " + " + str(val * OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Materials, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Materials) \
+				+ " + " + str(val * REDUCED_OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Magic, val * HIGH_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Magic) \
+				+ " - " + str(val * HIGH_OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Education, val * REDUCED_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Education) \
+				+ " - " + str(val * REDUCED_OUTPUT)
 			return text
 		Datatypes.ACTIONS.Revelry:
+			text = Datatypes.get_action_string(actionID)
+			#State.chaos += 1
+			text += "\nChaos +"
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Happiness, val * HIGH_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Happiness) \
+				+ " + " + str(val * HIGH_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Freedom, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Freedom) \
+				+ " + " + str(val * OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Faith, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Faith) \
+				+ " - " + str(val * OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Education, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Education) \
+				+ " - " + str(val * OUTPUT)
 			return text
 		Datatypes.ACTIONS.ForbiddenResearch:
+			text = Datatypes.get_action_string(actionID)
+			#State.chaos += 1
+			text += "\nChaos +"
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Education, val * HIGH_OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Education) \
+				+ " + " + str(val * HIGH_OUTPUT)
+			#Statistics.increaseStatistic(Datatypes.STATISTICS.Freedom, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Freedom) \
+				+ " + " + str(val * OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Faith, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Faith) \
+				+ " - " + str(val * OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.Health, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.Health) \
+				+ " - " + str(val * OUTPUT)
+			#Statistics.decreaseStatistic(Datatypes.STATISTICS.ForeignRelations, val * OUTPUT)
+			text += "\n" + Datatypes.get_statistics_string(Datatypes.STATISTICS.ForeignRelations) \
+				+ " - " + str(val * OUTPUT)
 			return text
 		_:
 			return "UNKNOWN"
@@ -152,22 +481,22 @@ func triggerAction(actionID: Datatypes.ACTIONS, val: int) -> void:
 			processHold(val)
 		Datatypes.ACTIONS.Infrastructure:
 			val = modifyValue(infrastructure_mod, val)
-			processHold(val)
+			processInfrastructure(val)
 		Datatypes.ACTIONS.DarkRitual:
 			val = modifyValue(dark_ritual_mod, val)
-			processHold(val)
+			processDarkRitual(val)
 		Datatypes.ACTIONS.Warfare:
 			val = modifyValue(warfare_mod, val)
-			processHold(val)
+			processWarfare(val)
 		Datatypes.ACTIONS.OtherworldlyRitual:
 			val = modifyValue(otherworldly_ritual_mod, val)
-			processHold(val)
+			processOtherworldlyRitual(val)
 		Datatypes.ACTIONS.Revelry:
 			val = modifyValue(revelry_mod, val)
-			processHold(val)
+			processRevelry(val)
 		Datatypes.ACTIONS.ForbiddenResearch:
 			val = modifyValue(forbidden_research_mod, val)
-			processHold(val)
+			processForbiddenResearch(val)
 		_:
 			pass
 
