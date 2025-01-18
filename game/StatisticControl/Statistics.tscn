@@ -4,3 +4,30 @@
 
 [node name="Statistics" type="Node"]
 script = ExtResource("1_ue8kn")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchors_preset = -1
+anchor_right = 0.516406
+anchor_bottom = 0.0430556
+metadata/_edit_use_anchors_ = true
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+text = "Magic: "
+
+[node name="Label2" type="Label" parent="HBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 2
+text = "+"
+
+[node name="Button2" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+text = "-"
+
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]

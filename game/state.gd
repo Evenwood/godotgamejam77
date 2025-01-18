@@ -18,6 +18,10 @@ var wealth = 0
 var food = 0
 var magic = 0
 
+# Variables for tracking chaos and order
+var chaos = 0
+var order = 0
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

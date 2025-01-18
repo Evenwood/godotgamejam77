@@ -4,7 +4,68 @@
 
 extends Node
 
+# Constant used to determine how much the value is modified for positive and negative correlation
 const CORRELATION_QUOTIENT = 2
+
+# Constants determine max value of statistics
+const INFLUENCE_MAX = 100
+const WEALTH_MAX = 1000
+const FREEDOM_MAX = 50
+const HEALTH_MAX = 50
+const FAITH_MAX = 50
+const EDUCATION_MAX = 50
+const FOREIGN_RELATIONS_MAX = 50
+const MILITARY_STRENGTH_MAX = 50
+const POPULATION_MAX = 1000
+const MATERIALS_MAX = 100
+const MAGIC_MAX = 50
+const FOOD_MAX = 100
+const HAPPINESS_MAX = 50
+
+# Constants determine min value of statistics
+const INFLUENCE_MIN = -100
+const WEALTH_MIN = 0
+const FREEDOM_MIN = -50
+const HEALTH_MIN = -50
+const FAITH_MIN = -50
+const EDUCATION_MIN = -50
+const FOREIGN_RELATIONS_MIN = -50
+const MILITARY_STRENGTH_MIN = -50
+const POPULATION_MIN = 0
+const MATERIALS_MIN = 0
+const MAGIC_MIN = -50
+const FOOD_MIN = 0
+const HAPPINESS_MIN = -50
+
+# Constants determine positive correlation of statistics
+const INFLUENCE_POS_CORRELATION = Datatypes.STATISTICS.Wealth
+const WEALTH_POS_CORRELATION = Datatypes.STATISTICS.Education
+const FREEDOM_POS_CORRELATION = Datatypes.STATISTICS.Happiness
+const HEALTH_POS_CORRELATION = Datatypes.STATISTICS.Population
+const FAITH_POS_CORRELATION = Datatypes.STATISTICS.Magic
+const EDUCATION_POS_CORRELATION = Datatypes.STATISTICS.Materials
+const FOREIGN_RELATIONS_POS_CORRELATION = Datatypes.STATISTICS.Population
+const MILITARY_STRENGTH_POS_CORRELATION = Datatypes.STATISTICS.Influence
+const POPULATION_POS_CORRELATION = Datatypes.STATISTICS.Wealth
+const MATERIALS_POS_CORRELATION = Datatypes.STATISTICS.Food
+const MAGIC_POS_CORRELATION = Datatypes.STATISTICS.MilitaryStrength
+const FOOD_POS_CORRELATION = Datatypes.STATISTICS.Health
+const HAPPINESS_POS_CORRELATION = Datatypes.STATISTICS.Wealth
+
+# Constants determine negative correlation of statistics
+const INFLUENCE_NEG_CORRELATION = Datatypes.STATISTICS.Freedom
+const WEALTH_NEG_CORRELATION = Datatypes.STATISTICS.Faith
+const FREEDOM_NEG_CORRELATION = Datatypes.STATISTICS.MilitaryStrength
+const HEALTH_NEG_CORRELATION = Datatypes.STATISTICS.Faith
+const FAITH_NEG_CORRELATION = Datatypes.STATISTICS.Education
+const EDUCATION_NEG_CORRELATION = Datatypes.STATISTICS.Influence
+const FOREIGN_RELATIONS_NEG_CORRELATION = Datatypes.STATISTICS.Influence
+const MILITARY_STRENGTH_NEG_CORRELATION = Datatypes.STATISTICS.Happiness
+const POPULATION_NEG_CORRELATION = Datatypes.STATISTICS.Food
+const MATERIALS_NEG_CORRELATION = Datatypes.STATISTICS.Faith
+const MAGIC_NEG_CORRELATION = Datatypes.STATISTICS.Materials
+const FOOD_NEG_CORRELATION = Datatypes.STATISTICS.Wealth
+const HAPPINESS_NEG_CORRELATION = Datatypes.STATISTICS.Faith
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,10 +76,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 	
-func negativeCorrelation(statistic: String, val: int) -> void:
+func negativeCorrelation(statistic: Datatypes.STATISTICS, val: int) -> void:
 	decreaseStatistic(statistic, floor(val/CORRELATION_QUOTIENT))
 			
-func positiveCorrelation(statistic: String, val: int) -> void:
+func positiveCorrelation(statistic: Datatypes.STATISTICS, val: int) -> void:
 	increaseStatistic(statistic, floor(val/CORRELATION_QUOTIENT))
 
 func checkCorrelation(val: int) -> bool:
@@ -27,224 +88,228 @@ func checkCorrelation(val: int) -> bool:
 	else:
 		return false
 
-func increaseStatistic(statistic: String, val: int) -> void:
+func increaseStatistic(statistic: Datatypes.STATISTICS, val: int) -> void:
 	match statistic:
-		"education":
-			if((State.education + val) > Education.max_value):
-				State.education = Education.max_value
+		Datatypes.STATISTICS.Education:
+			if((State.education + val) > EDUCATION_MAX):
+				State.education = EDUCATION_MAX
 			else:
 				State.education += val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Education.positive_correlation, val)
-				negativeCorrelation(Education.negative_correlation, val)
-		"faith":
-			if((State.faith + val) > Faith.max_value):
-				State.faith = Faith.max_value
+				positiveCorrelation(EDUCATION_POS_CORRELATION, val)
+				negativeCorrelation(EDUCATION_NEG_CORRELATION, val)
+		Datatypes.STATISTICS.Faith:
+			if((State.faith + val) > FAITH_MAX):
+				State.faith = FAITH_MAX
 			else:
 				State.faith += val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Faith.positive_correlation, val)
-				negativeCorrelation(Faith.negative_correlation, val)
-		"food":
-			if((State.food + val) > Food.max_value):
-				State.food = Food.max_value
+				positiveCorrelation(FAITH_POS_CORRELATION, val)
+				negativeCorrelation(FAITH_NEG_CORRELATION, val)
+		Datatypes.STATISTICS.Food:
+			if((State.food + val) > FOOD_MAX):
+				State.food = FOOD_MAX
 			else:
 				State.food += val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Food.positive_correlation, val)
-				negativeCorrelation(Food.negative_correlation, val)
-		"magic":
-			if((State.magic + val) > Magic.max_value):
-				State.magic = Magic.max_value
+				positiveCorrelation(FOOD_POS_CORRELATION, val)
+				negativeCorrelation(FOOD_NEG_CORRELATION, val)
+		Datatypes.STATISTICS.Magic:
+			if((State.magic + val) > MAGIC_MAX):
+				State.magic = MAGIC_MAX
 			else:
 				State.magic += val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Magic.positive_correlation, val)
-				negativeCorrelation(Magic.negative_correlation, val)
-		"foreign relations":
-			if((State.foreign_relations + val) > ForeignRelations.max_value):
-				State.foreign_relations = ForeignRelations.max_value
+				positiveCorrelation(MAGIC_POS_CORRELATION, val)
+				negativeCorrelation(MAGIC_NEG_CORRELATION, val)
+		Datatypes.STATISTICS.ForeignRelations:
+			if((State.foreign_relations + val) > FOREIGN_RELATIONS_MAX):
+				State.foreign_relations = FOREIGN_RELATIONS_MAX
 			else:
 				State.foreign_relations += val
 			if(checkCorrelation(val)):
-				positiveCorrelation(ForeignRelations.positive_correlation, val)
-				negativeCorrelation(ForeignRelations.negative_correlation, val)
-		"freedom":
-			if((State.freedom + val) > Freedom.max_value):
-				State.freedom = Freedom.max_value
+				positiveCorrelation(FOREIGN_RELATIONS_POS_CORRELATION, val)
+				negativeCorrelation(FOREIGN_RELATIONS_NEG_CORRELATION, val)
+		Datatypes.STATISTICS.Freedom:
+			if((State.freedom + val) > FREEDOM_MAX):
+				State.freedom = FREEDOM_MAX
 			else:
 				State.freedom += val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Freedom.positive_correlation, val)
-				negativeCorrelation(Freedom.negative_correlation, val)
-		"health":
-			if((State.health + val) > Health.max_value):
-				State.health = Health.max_value
+				positiveCorrelation(FREEDOM_POS_CORRELATION, val)
+				negativeCorrelation(FREEDOM_NEG_CORRELATION, val)
+		Datatypes.STATISTICS.Health:
+			if((State.health + val) > HEALTH_MAX):
+				State.health = HEALTH_MAX
 			else:
 				State.health += val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Health.positive_correlation, val)
-				negativeCorrelation(Health.negative_correlation, val)
-		"influence":
-			if((State.influence + val) > Influence.max_value):
-				State.influence = Influence.max_value
+				positiveCorrelation(HEALTH_POS_CORRELATION, val)
+				negativeCorrelation(HEALTH_NEG_CORRELATION, val)
+		Datatypes.STATISTICS.Influence:
+			if((State.influence + val) > INFLUENCE_MAX):
+				State.influence = INFLUENCE_MAX
 			else:
 				State.influence += val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Influence.positive_correlation, val)
-				negativeCorrelation(Influence.negative_correlation, val)
-		"magic":
-			if((State.magic + val) > Magic.max_value):
-				State.magic = Magic.max_value
+				positiveCorrelation(INFLUENCE_POS_CORRELATION, val)
+				negativeCorrelation(INFLUENCE_NEG_CORRELATION, val)
+		Datatypes.STATISTICS.Magic:
+			if((State.magic + val) > MAGIC_MAX):
+				State.magic = MAGIC_MAX
 			else:
 				State.magic += val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Magic.positive_correlation, val)
-				negativeCorrelation(Magic.negative_correlation, val)
-		"materials":
-			if((State.materials + val) > Materials.max_value):
-				State.materials = Materials.max_value
+				positiveCorrelation(MAGIC_POS_CORRELATION, val)
+				negativeCorrelation(MAGIC_NEG_CORRELATION, val)
+		Datatypes.STATISTICS.Materials:
+			if((State.materials + val) > MATERIALS_MAX):
+				State.materials = MATERIALS_MAX
 			else:
 				State.materials += val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Materials.positive_correlation, val)
-				negativeCorrelation(Materials.negative_correlation, val)
-		"military strength":
-			if((State.military_strength + val) > MilitaryStrength.max_value):
-				State.military_strength = MilitaryStrength.max_value
+				positiveCorrelation(MATERIALS_POS_CORRELATION, val)
+				negativeCorrelation(MATERIALS_NEG_CORRELATION, val)
+		Datatypes.STATISTICS.MilitaryStrength:
+			if((State.military_strength + val) > MILITARY_STRENGTH_MAX):
+				State.military_strength = MILITARY_STRENGTH_MAX
 			else:
 				State.military_strength += val
 			if(checkCorrelation(val)):
-				positiveCorrelation(MilitaryStrength.positive_correlation, val)
-				negativeCorrelation(MilitaryStrength.negative_correlation, val)
-		"population":
-			if((State.population + val) > Population.max_value):
-				State.population = Population.max_value
+				positiveCorrelation(MILITARY_STRENGTH_POS_CORRELATION, val)
+				negativeCorrelation(MILITARY_STRENGTH_NEG_CORRELATION, val)
+		Datatypes.STATISTICS.Population:
+			if((State.population + val) > POPULATION_MAX):
+				State.population = POPULATION_MAX
 			else:
 				State.population += val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Population.positive_correlation, val)
-				negativeCorrelation(Population.negative_correlation, val)
-		"wealth":
-			if((State.wealth + val) > Wealth.max_value):
-				State.wealth = Wealth.max_value
+				positiveCorrelation(POPULATION_POS_CORRELATION, val)
+				negativeCorrelation(POPULATION_NEG_CORRELATION, val)
+		Datatypes.STATISTICS.Wealth:
+			if((State.wealth + val) > WEALTH_MAX):
+				State.wealth = WEALTH_MAX
 			else:
 				State.wealth += val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Wealth.positive_correlation, val)
-				negativeCorrelation(Wealth.negative_correlation, val)
+				positiveCorrelation(WEALTH_POS_CORRELATION, val)
+				negativeCorrelation(WEALTH_NEG_CORRELATION, val)
 		_:
 			pass
 
-func decreaseStatistic(statistic: String, val: int) -> void:
+func decreaseStatistic(statistic: Datatypes.STATISTICS, val: int) -> void:
 	match statistic:
-		"education":
-			if((State.education - val) < Education.min_value):
-				State.education = Education.min_value
+		Datatypes.STATISTICS.Education:
+			if((State.education - val) < EDUCATION_MIN):
+				State.education = EDUCATION_MIN
 			else:
 				State.education -= val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Education.negative_correlation, val)
-				negativeCorrelation(Education.positive_correlation, val)
-		"faith":
-			if((State.faith - val) < Faith.min_value):
-				State.faith = Faith.min_value
+				positiveCorrelation(EDUCATION_NEG_CORRELATION, val)
+				negativeCorrelation(EDUCATION_POS_CORRELATION, val)
+		Datatypes.STATISTICS.Faith:
+			if((State.faith - val) < FAITH_MIN):
+				State.faith = FAITH_MIN
 			else:
 				State.faith -= val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Faith.negative_correlation, val)
-				negativeCorrelation(Faith.positive_correlation, val)
-		"food":
-			if((State.food - val) < Food.min_value):
-				State.food = Food.min_value
+				positiveCorrelation(FAITH_NEG_CORRELATION, val)
+				negativeCorrelation(FAITH_POS_CORRELATION, val)
+		Datatypes.STATISTICS.Food:
+			if((State.food - val) < FOOD_MIN):
+				State.food = FOOD_MIN
 			else:
 				State.food -= val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Food.negative_correlation, val)
-				negativeCorrelation(Food.positive_correlation, val)
-		"magic":
-			if((State.magic - val) < Magic.min_value):
-				State.magic = Magic.min_value
+				positiveCorrelation(FOOD_NEG_CORRELATION, val)
+				negativeCorrelation(FOOD_POS_CORRELATION, val)
+		Datatypes.STATISTICS.Magic:
+			if((State.magic - val) < MAGIC_MIN):
+				State.magic = MAGIC_MIN
 			else:
 				State.magic -= val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Magic.negative_correlation, val)
-				negativeCorrelation(Magic.positive_correlation, val)
-		"foreign relations":
-			if((State.foreign_relations - val) < ForeignRelations.min_value):
-				State.foreign_relations = ForeignRelations.min_value
+				positiveCorrelation(MAGIC_NEG_CORRELATION, val)
+				negativeCorrelation(MAGIC_POS_CORRELATION, val)
+		Datatypes.STATISTICS.ForeignRelations:
+			if((State.foreign_relations - val) < FOREIGN_RELATIONS_MIN):
+				State.foreign_relations = FOREIGN_RELATIONS_MIN
 			else:
 				State.foreign_relations -= val
 			if(checkCorrelation(val)):
-				positiveCorrelation(ForeignRelations.negative_correlation, val)
-				negativeCorrelation(ForeignRelations.positive_correlation, val)
-		"freedom":
-			if((State.freedom - val) < Freedom.min_value):
-				State.freedom = Freedom.min_value
+				positiveCorrelation(FOREIGN_RELATIONS_NEG_CORRELATION, val)
+				negativeCorrelation(FOREIGN_RELATIONS_POS_CORRELATION, val)
+		Datatypes.STATISTICS.Freedom:
+			if((State.freedom - val) < FREEDOM_MIN):
+				State.freedom = FREEDOM_MIN
 			else:
 				State.freedom -= val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Freedom.negative_correlation, val)
-				negativeCorrelation(Freedom.positive_correlation, val)
-		"health":
-			if((State.health - val) < Health.min_value):
-				State.health = Health.min_value
+				positiveCorrelation(FREEDOM_NEG_CORRELATION, val)
+				negativeCorrelation(FREEDOM_POS_CORRELATION, val)
+		Datatypes.STATISTICS.Health:
+			if((State.health - val) < HEALTH_MIN):
+				State.health = HEALTH_MIN
 			else:
 				State.health -= val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Health.negative_correlation, val)
-				negativeCorrelation(Health.positive_correlation, val)
-		"influence":
-			if((State.influence - val) < Influence.min_value):
-				State.influence = Influence.min_value
+				positiveCorrelation(HEALTH_NEG_CORRELATION, val)
+				negativeCorrelation(HEALTH_POS_CORRELATION, val)
+		Datatypes.STATISTICS.Influence:
+			if((State.influence - val) < INFLUENCE_MIN):
+				State.influence = INFLUENCE_MIN
 			else:
 				State.influence -= val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Influence.negative_correlation, val)
-				negativeCorrelation(Influence.positive_correlation, val)
-		"magic":
-			if((State.magic - val) < Magic.min_value):
-				State.magic = Magic.min_value
+				positiveCorrelation(INFLUENCE_NEG_CORRELATION, val)
+				negativeCorrelation(INFLUENCE_POS_CORRELATION, val)
+		Datatypes.STATISTICS.Magic:
+			if((State.magic - val) < MAGIC_MIN):
+				State.magic = MAGIC_MIN
 			else:
 				State.magic -= val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Magic.negative_correlation, val)
-				negativeCorrelation(Magic.positive_correlation, val)
-		"materials":
-			if((State.materials - val) < Materials.min_value):
-				State.materials = Materials.min_value
+				positiveCorrelation(MAGIC_NEG_CORRELATION, val)
+				negativeCorrelation(MAGIC_POS_CORRELATION, val)
+		Datatypes.STATISTICS.Materials:
+			if((State.materials - val) < MATERIALS_MIN):
+				State.materials = MATERIALS_MIN
 			else:
 				State.materials -= val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Materials.negative_correlation, val)
-				negativeCorrelation(Materials.positive_correlation, val)
-		"military strength":
-			if((State.military_strength - val) < MilitaryStrength.min_value):
-				State.military_strength = MilitaryStrength.min_value
+				positiveCorrelation(MATERIALS_NEG_CORRELATION, val)
+				negativeCorrelation(MATERIALS_POS_CORRELATION, val)
+		Datatypes.STATISTICS.MilitaryStrength:
+			if((State.military_strength - val) < MILITARY_STRENGTH_MIN):
+				State.military_strength = MILITARY_STRENGTH_MIN
 			else:
 				State.military_strength -= val
 			if(checkCorrelation(val)):
-				positiveCorrelation(MilitaryStrength.negative_correlation, val)
-				negativeCorrelation(MilitaryStrength.positive_correlation, val)
-		"population":
-			if((State.population - val) < Population.min_value):
-				State.population = Population.min_value
+				positiveCorrelation(MILITARY_STRENGTH_NEG_CORRELATION, val)
+				negativeCorrelation(MILITARY_STRENGTH_POS_CORRELATION, val)
+		Datatypes.STATISTICS.Population:
+			if((State.population - val) < POPULATION_MIN):
+				State.population = POPULATION_MIN
 			else:
 				State.population -= val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Population.negative_correlation, val)
-				negativeCorrelation(Population.positive_correlation, val)
-		"wealth":
-			if((State.wealth - val) < Wealth.min_value):
-				State.wealth = Wealth.min_value
+				positiveCorrelation(POPULATION_NEG_CORRELATION, val)
+				negativeCorrelation(POPULATION_POS_CORRELATION, val)
+		Datatypes.STATISTICS.Wealth:
+			if((State.wealth - val) < WEALTH_MIN):
+				State.wealth = WEALTH_MIN
 			else:
 				State.wealth -= val
 			if(checkCorrelation(val)):
-				positiveCorrelation(Wealth.negative_correlation, val)
-				negativeCorrelation(Wealth.positive_correlation, val)
+				positiveCorrelation(WEALTH_NEG_CORRELATION, val)
+				negativeCorrelation(WEALTH_POS_CORRELATION, val)
 		_:
 			pass
 		
 	
 
 	
+
+
+func _on_button_pressed() -> void:
+	pass # Replace with function body.
