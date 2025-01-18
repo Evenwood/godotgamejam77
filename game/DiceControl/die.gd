@@ -81,6 +81,8 @@ func _on_input_event(_viewport, event, _shape_idx):
 				# Store the offset between mouse position and node position
 				click_offset = position - get_global_mouse_position()
 				change_appearance(dragging)
+				if current_drop_zone:
+					current_drop_zone.set_die_value(value)
 			else:
 				# Stop dragging
 				dragging = false
@@ -106,6 +108,9 @@ func change_appearance(is_dragging: bool):
 func _on_area_entered(area):
 	if area.is_in_group("drop_zone"):
 		current_drop_zone = area
+		current_drop_zone.set_die_value(value)
+		# Explicitly call this so that the ordering gets set
+		current_drop_zone.on_area_entered(area)
 		
 func _on_area_exited(area):
 	if area == current_drop_zone:

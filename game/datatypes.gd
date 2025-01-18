@@ -31,6 +31,7 @@ static var  action_strings = {
 	ACTIONS.ForbiddenResearch: "Forbidden Research"
 }
 
+
 static var minor_event_strings = {
 	MINOR_EVENTS.Gift: "Gift",
 	MINOR_EVENTS.RequestAid: "Request for Aid",
@@ -86,6 +87,22 @@ static var minor_event_strings = {
 	MINOR_EVENTS.DarkDiscovery: "Dark Discovery", 
 	MINOR_EVENTS.EvilAdvances: "Evil Advances", 
 	MINOR_EVENTS.Miracle: "Miracle"
+
+static var statistics_strings = {
+	STATISTICS.Influence: "Influence",
+	STATISTICS.Wealth: "Wealth",
+	STATISTICS.Freedom: "Freedom",
+	STATISTICS.Health: "Health",
+	STATISTICS.Faith: "Faith",
+	STATISTICS.Education: "Education",
+	STATISTICS.ForeignRelations: "Foreign Relations",
+	STATISTICS.MilitaryStrength: "Military Strength",
+	STATISTICS.Population: "Population",
+	STATISTICS.Materials: "Materials",
+	STATISTICS.Magic: "Magic",
+	STATISTICS.Food: "Food",
+	STATISTICS.Happiness: "Happiness"
+
 }
 
 # Called when the node enters the scene tree for the first time.
@@ -100,5 +117,10 @@ func _process(delta: float) -> void:
 static func get_action_string(value):
 	return action_strings.get(value, "UNKNOWN")
 	
+
 static func get_minor_event_string(value):
 	return minor_event_strings.get(value, "UNKNOWN")
+  
+static func get_statistics_string(value):
+	return statistics_strings.get(value, "UNKNOWN")
+
