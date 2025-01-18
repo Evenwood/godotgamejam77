@@ -15,6 +15,8 @@ var label_text = "this is the text"
 var info_text = "this is information"
 var action_id = Datatypes.ACTIONS.Diplomacy
 var die_value = 1
+var dialog = ConfirmationDialog.new()
+var dropped_die = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -28,6 +30,7 @@ func _ready() -> void:
 	set_up_label_styles()
 	set_label_text(label_text)
 	info_label.hide()
+	set_up_confrm_dialog()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -83,10 +86,11 @@ func set_action_id(id):
 func _on_item_dropped(item):
 	item.dropped = true
 	#print("Drop Zone")
-	var dice_scene = get_tree().root.find_child("DiceScene", true, false)
-	item.position = dice_scene.to_local(global_position + sprite.size / 2)
-	item.z_index = z_index + 1 # Move it in front
+	dropped_die = item
+	#dialog.popup_centered()
 	info_label.hide()
+	dialog.dialog_text = info_label.text + "\nAre you sure you want to drop the die here?" 
+	dialog.popup_centered()
 	#print("--------")
 
 func set_up_label_styles():
@@ -102,3 +106,21 @@ func set_up_label_styles():
 	info_label.add_theme_stylebox_override("normal", info_style)
 	info_label.add_theme_font_size_override("font_size", 12)
 	info_label.z_index = 10
+	
+func set_up_confrm_dialog():
+	add_child(dialog)
+	dialog.title = "Please Confirm"
+	dialog.dialog_text = "Are you sure you want to drop the die here?"
+	# Connect to the confirmation signal
+	dialog.confirmed.connect(_on_confirmed)
+	dialog.canceled.connect(_on_canceled)
+	
+	# Handle the response
+func _on_confirmed():
+	var dice_scene = get_tree().root.find_child("DiceScene", true, false)
+	dropped_die.position = dice_scene.to_local(global_position + sprite.size / 2)
+	dropped_die.z_index = z_index + 1 # Move it in front
+
+func _on_canceled():
+	#print("User canceled")
+	dropped_die.cancel_drop()

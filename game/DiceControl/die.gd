@@ -105,6 +105,12 @@ func change_appearance(is_dragging: bool):
 		sprite.modulate = Color(1, 1, 1, 1)
 		sprite.scale = Vector2(SPRITE_SCALE_X, SPRITE_SCALE_Y)
 		
+func cancel_drop():
+	dragging = false
+	change_appearance(dragging)
+	position = orig_position
+	current_drop_zone = null
+		
 func _on_area_entered(area):
 	if area.is_in_group("drop_zone"):
 		current_drop_zone = area
