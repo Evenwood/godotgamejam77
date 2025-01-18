@@ -18,25 +18,22 @@ var die_value = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	add_to_group("drop_zone")
 	# Enable area detection
 	input_pickable = true
-	connect("area_entered", _on_area_entered)
+	#connect("area_entered", _on_area_entered)
 	connect("area_exited", _on_area_exited)
 	connect("item_dropped", _on_item_dropped)
 	sprite.modulate = Color(1, 1, 1, 0.5)
-	label.add_theme_color_override("font_color", Color.BLACK)
-	var style = StyleBoxFlat.new()
-	style.bg_color = Color(1, 1, 1, 0.5)
-	label.add_theme_stylebox_override("normal", style)
-	label.add_theme_font_size_override("font_size", 12)
-	#info_label.show()
+	set_up_label_styles()
 	set_label_text(label_text)
+	info_label.hide()
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 	
-func _on_area_entered(area) -> void:
+func on_area_entered(area) -> void:
 	sprite.modulate = Color(0, 1, 0, 0.5) # Green tint
 	set_info_text(Actions.actionText(action_id, die_value))
 	show_info()
@@ -52,6 +49,9 @@ func update_label_position():
 func update_info_position():
 	info_label.position.x = (sprite.position.x + sprite.size.x / 2) - (info_label.size.x / 2)
 	info_label.position.y = sprite.position.y - info_label.size.y
+	#print(info_label.global_position.y)
+	if info_label.global_position.y < 0:
+		info_label.position.y = sprite.position.y + sprite.size.y
 
 func set_label_text(new_text):
 	label.text = new_text
@@ -71,6 +71,15 @@ func show_info():
 func hide_info():
 	info_label.hide()
 	
+func set_die_value(value):
+	die_value = value
+
+func get_die_value():
+	return die_value
+	
+func set_action_id(id):
+	action_id = id
+	
 func _on_item_dropped(item):
 	item.dropped = true
 	#print("Drop Zone")
@@ -79,3 +88,17 @@ func _on_item_dropped(item):
 	item.z_index = z_index + 1 # Move it in front
 	info_label.hide()
 	#print("--------")
+
+func set_up_label_styles():
+	label.add_theme_color_override("font_color", Color.BLACK)
+	var style = StyleBoxFlat.new()
+	style.bg_color = Color(1, 1, 1, 0.5)
+	label.add_theme_stylebox_override("normal", style)
+	label.add_theme_font_size_override("font_size", 12)
+	
+	info_label.add_theme_color_override("font_color", Color.DARK_BLUE)
+	var info_style = StyleBoxFlat.new()
+	info_style.bg_color = Color(1, 1, 0, 0.8)
+	info_label.add_theme_stylebox_override("normal", info_style)
+	info_label.add_theme_font_size_override("font_size", 12)
+	info_label.z_index = 10

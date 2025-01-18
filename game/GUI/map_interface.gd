@@ -24,6 +24,7 @@ func load_dropzones() -> void:
 	var spacing = 100
 	for key in Datatypes.ACTIONS.keys():
 		var dropzone = dropzone_scene.instantiate()
+		dropzone.set_action_id(Datatypes.ACTIONS[key])
 		dropzones.append(dropzone)
 		add_child(dropzone)
 		var text = key
