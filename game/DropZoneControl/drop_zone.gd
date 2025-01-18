@@ -9,8 +9,12 @@ signal item_dropped(item)
 @onready var info_label: Label = $InfoLabel
 @onready var drop_area: CollisionShape2D = $DropArea
 
+var Actions = preload("res://ActionControl/actions.gd")
+
 var label_text = "this is the text"
 var info_text = "this is information"
+var action_id = Datatypes.ACTIONS.Diplomacy
+var die_value = 1
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -34,6 +38,7 @@ func _process(delta: float) -> void:
 	
 func _on_area_entered(area) -> void:
 	sprite.modulate = Color(0, 1, 0, 0.5) # Green tint
+	set_info_text(Actions.actionText(action_id, die_value))
 	show_info()
 	
 func _on_area_exited(area) -> void:

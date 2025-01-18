@@ -3,6 +3,7 @@ extends Control
 @onready var dice_scene: Node2D = $PanelContainer/DiceScene
 
 var dropzone_scene = preload("res://DropZoneControl/drop_zone.tscn")
+var Actions = preload("res://ActionControl/actions.gd")
 var dropzones = []
 var dropzone_positions = {}
 

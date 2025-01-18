@@ -55,6 +55,48 @@ func modifyValue(modifier: int, val: int) -> int:
 	
 	return val
 
+static func actionText(actionID: Datatypes.ACTIONS, val: int) -> String:
+	var text = "WIP - " + str(actionID) + " " + str(val)
+	match actionID:
+		Datatypes.ACTIONS.Diplomacy:
+			return text
+		Datatypes.ACTIONS.Clairvoyance:
+			return text
+		Datatypes.ACTIONS.Harvest:
+			return text
+		Datatypes.ACTIONS.Explore:
+			return text
+		Datatypes.ACTIONS.Market:
+			return text
+		Datatypes.ACTIONS.Shrine:
+			return text
+		Datatypes.ACTIONS.Tower:
+			return text
+		Datatypes.ACTIONS.Prison:
+			return text
+		Datatypes.ACTIONS.Barracks:
+			return text
+		Datatypes.ACTIONS.Academy:
+			return text
+		Datatypes.ACTIONS.Charity:
+			return text
+		Datatypes.ACTIONS.Hold:
+			return text
+		Datatypes.ACTIONS.Infrastructure:
+			return text
+		Datatypes.ACTIONS.DarkRitual:
+			return text
+		Datatypes.ACTIONS.Warfare:
+			return text
+		Datatypes.ACTIONS.OtherworldlyRitual:
+			return text
+		Datatypes.ACTIONS.Revelry:
+			return text
+		Datatypes.ACTIONS.ForbiddenResearch:
+			return text
+		_:
+			return "UNKNOWN"
+
 func triggerAction(actionID: Datatypes.ACTIONS, val: int) -> void:
 	match actionID:
 		Datatypes.ACTIONS.Diplomacy:
