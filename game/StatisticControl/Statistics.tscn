@@ -21,44 +21,42 @@ border_color = Color(0, 0, 0, 1)
 [node name="Statistics" type="Node"]
 script = ExtResource("1_ue8kn")
 
-[node name="Window" type="Window" parent="."]
-title = "Statistics"
-position = Vector2i(0, 36)
-size = Vector2i(1280, 360)
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="Window"]
-
-[node name="Panel" type="Panel" parent="Window/CanvasLayer"]
+[node name="Panel" type="Panel" parent="CanvasLayer"]
 offset_right = 1280.0
 offset_bottom = 360.0
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_52vfn")
 
-[node name="MarginContainer" type="MarginContainer" parent="Window/CanvasLayer/Panel"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel"]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+mouse_filter = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
 
-[node name="GridContainer" type="GridContainer" parent="Window/CanvasLayer/Panel/MarginContainer"]
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Panel/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/h_separation = 60
 theme_override_constants/v_separation = 85
 columns = 5
 
-[node name="InfluenceStatSet" type="VBoxContainer" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer"]
+[node name="InfluenceStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Stat" type="Label" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/InfluenceStatSet"]
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/InfluenceStatSet"]
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 text = "Influence: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/InfluenceStatSet"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/InfluenceStatSet"]
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
@@ -66,17 +64,17 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
 min_value = -100.0
 show_percentage = false
 
-[node name="PopulationStatSet" type="VBoxContainer" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer"]
+[node name="PopulationStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Stat" type="Label" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/PopulationStatSet"]
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/PopulationStatSet"]
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 text = "Population: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/PopulationStatSet"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/PopulationStatSet"]
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
@@ -84,17 +82,17 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
 min_value = -100.0
 show_percentage = false
 
-[node name="WealthStatSet" type="VBoxContainer" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer"]
+[node name="WealthStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Stat" type="Label" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/WealthStatSet"]
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/WealthStatSet"]
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 text = "Wealth: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/WealthStatSet"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/WealthStatSet"]
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
@@ -102,17 +100,17 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
 min_value = -100.0
 show_percentage = false
 
-[node name="FoodStatSet" type="VBoxContainer" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer"]
+[node name="FoodStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Stat" type="Label" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/FoodStatSet"]
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/FoodStatSet"]
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 text = "Food: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/FoodStatSet"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/FoodStatSet"]
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
@@ -120,17 +118,17 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
 min_value = -100.0
 show_percentage = false
 
-[node name="MaterialsStatSet" type="VBoxContainer" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer"]
+[node name="MaterialsStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Stat" type="Label" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/MaterialsStatSet"]
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/MaterialsStatSet"]
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 text = "Materials: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/MaterialsStatSet"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/MaterialsStatSet"]
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
@@ -138,17 +136,17 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
 min_value = -100.0
 show_percentage = false
 
-[node name="HappinessStatSet" type="VBoxContainer" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer"]
+[node name="HappinessStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Stat" type="Label" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/HappinessStatSet"]
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/HappinessStatSet"]
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 text = "Happiness: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/HappinessStatSet"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/HappinessStatSet"]
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
@@ -156,17 +154,17 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
 min_value = -100.0
 show_percentage = false
 
-[node name="HealthStatSet" type="VBoxContainer" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer"]
+[node name="HealthStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Stat" type="Label" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/HealthStatSet"]
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/HealthStatSet"]
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 text = "Health: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/HealthStatSet"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/HealthStatSet"]
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
@@ -174,17 +172,17 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
 min_value = -100.0
 show_percentage = false
 
-[node name="FreedomStatSet" type="VBoxContainer" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer"]
+[node name="FreedomStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Stat" type="Label" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/FreedomStatSet"]
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/FreedomStatSet"]
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 text = "Freedom: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/FreedomStatSet"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/FreedomStatSet"]
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
@@ -192,17 +190,17 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
 min_value = -100.0
 show_percentage = false
 
-[node name="FaithStatSet" type="VBoxContainer" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer"]
+[node name="FaithStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Stat" type="Label" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/FaithStatSet"]
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/FaithStatSet"]
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 text = "Faith: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/FaithStatSet"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/FaithStatSet"]
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
@@ -210,17 +208,17 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
 min_value = -100.0
 show_percentage = false
 
-[node name="EducationStatSet" type="VBoxContainer" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer"]
+[node name="EducationStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Stat" type="Label" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/EducationStatSet"]
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/EducationStatSet"]
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 text = "Education: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/EducationStatSet"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/EducationStatSet"]
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
@@ -228,17 +226,17 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
 min_value = -100.0
 show_percentage = false
 
-[node name="MagicStatSet" type="VBoxContainer" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer"]
+[node name="MagicStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Stat" type="Label" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/MagicStatSet"]
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/MagicStatSet"]
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 text = "Magic: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/MagicStatSet"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/MagicStatSet"]
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
@@ -246,17 +244,17 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
 min_value = -100.0
 show_percentage = false
 
-[node name="MilitaryStrengthStatSet" type="VBoxContainer" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer"]
+[node name="MilitaryStrengthStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Stat" type="Label" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/MilitaryStrengthStatSet"]
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/MilitaryStrengthStatSet"]
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 text = "Military Strength: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/MilitaryStrengthStatSet"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/MilitaryStrengthStatSet"]
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
@@ -264,17 +262,17 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
 min_value = -100.0
 show_percentage = false
 
-[node name="ForeignRelationsStatSet" type="VBoxContainer" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer"]
+[node name="ForeignRelationsStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Stat" type="Label" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/ForeignRelationsStatSet"]
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/ForeignRelationsStatSet"]
 custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
 text = "Foreign Relations: 0"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="ProgressBar" type="ProgressBar" parent="Window/CanvasLayer/Panel/MarginContainer/GridContainer/ForeignRelationsStatSet"]
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/ForeignRelationsStatSet"]
 custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
 theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")

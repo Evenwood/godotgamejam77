@@ -17,6 +17,7 @@ var population = 0
 var wealth = 0
 var food = 0
 var magic = 0
+var happiness = 0
 
 # Variables for tracking chaos and order
 var chaos = 0
