@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bblcdjvp3e88x"]
+[gd_scene load_steps=5 format=3 uid="uid://bblcdjvp3e88x"]
 
 [ext_resource type="Script" path="res://GUI/map_interface.gd" id="1_3htrq"]
 [ext_resource type="Texture2D" uid="uid://dqtb4nyvell4j" path="res://Assets/Game_board.jpg" id="1_7b7h7"]
 [ext_resource type="PackedScene" uid="uid://cn8p8gir5v5ib" path="res://DiceControl/dice_scene.tscn" id="3_h6jwy"]
+[ext_resource type="PackedScene" uid="uid://cwcup6x6mim5w" path="res://GUI/pause_menu.tscn" id="4_wtv0c"]
 
 [node name="MapInterface" type="Control"]
 layout_mode = 3
@@ -24,3 +25,12 @@ texture = ExtResource("1_7b7h7")
 
 [node name="DiceScene" parent="PanelContainer" instance=ExtResource("3_h6jwy")]
 scale = Vector2(1.60152, 1.60368)
+
+[node name="PanelContainer2" type="PanelContainer" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PauseMenu" parent="PanelContainer2" instance=ExtResource("4_wtv0c")]
+visible = false
+layout_mode = 2

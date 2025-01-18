@@ -1,11 +1,13 @@
 extends Control
 
 @onready var dice_scene: Node2D = $PanelContainer/DiceScene
+@onready var pause_menu = $PanelContainer2/PauseMenu
 
 var dropzone_scene = preload("res://DropZoneControl/drop_zone.tscn")
 var Actions = preload("res://ActionControl/actions.gd")
 var dropzones = []
 var dropzone_positions = {}
+var paused = false;
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -14,9 +16,13 @@ func _ready() -> void:
 	setup_dropzone_positions()
 	dice_scene.position = Vector2(800, 945)
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func _process(delta):
+	if Input.is_action_just_pressed("escape"):
+		pauseMenu()
+
+#Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta: float) -> void:
+	#pass
 
 func load_dropzones() -> void:
 	var grid_columns = 10
@@ -69,3 +75,12 @@ func setup_dropzone_positions() -> void:
 		if(dropzone_positions.has(key)):
 			dropzones[i].position = dropzone_positions[key]
 		i += 1
+
+func pauseMenu():
+	if paused:
+		pause_menu.hide()
+		Engine.time_scale = 1
+	else: 
+		pause_menu.show()
+		Engine.time_scale = 0
+	paused = !paused
