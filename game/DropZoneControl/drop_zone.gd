@@ -38,11 +38,12 @@ func _on_area_exited(area) -> void:
 	sprite.modulate = Color(1, 1, 1, 0.5)
 	
 func update_label_position():
-	label.position.x = sprite.position.x - (label.size.x / 2)
-	#label.position.y = -sprite.size.y / 2 - label.size.y / 2
+	label.position.x = (sprite.position.x + sprite.size.x / 2) - (label.size.x / 2)
+	label.position.y = sprite.position.y + sprite.size.y
 
 func set_label_text(new_text):
 	label.text = new_text
+	label.set_size(Vector2.ZERO)  # Reset size to fit content
 	update_label_position()
 	
 func _on_item_dropped(item):

@@ -1,5 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://bblcdjvp3e88x"]
+[gd_scene load_steps=3 format=3 uid="uid://bblcdjvp3e88x"]
 
+[ext_resource type="Script" path="res://GUI/map_interface.gd" id="1_3htrq"]
 [ext_resource type="Texture2D" uid="uid://dqtb4nyvell4j" path="res://Assets/Game_board.jpg" id="1_7b7h7"]
 
 [node name="MapInterface" type="Control"]
@@ -9,6 +10,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_3htrq")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 layout_mode = 0
