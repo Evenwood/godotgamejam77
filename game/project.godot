@@ -19,7 +19,7 @@ config/icon="res://icon.svg"
 
 State="*res://state.gd"
 Datatypes="*res://datatypes.gd"
-Statistics="*res://StatisticControl/statistics.gd"
+StatisticalGrowth="*res://StatisticControl/statistical_growth.gd"
 
 [display]
 

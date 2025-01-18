@@ -1,33 +1,281 @@
-[gd_scene load_steps=2 format=3 uid="uid://d0qqsink86n8v"]
+[gd_scene load_steps=5 format=3 uid="uid://d0qqsink86n8v"]
 
 [ext_resource type="Script" path="res://StatisticControl/statistics.gd" id="1_ue8kn"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_52vfn"]
+bg_color = Color(0.100153, 0.176895, 0.211701, 0.588235)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rqg63"]
+bg_color = Color(0.69075, 0, 0.07475, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ngq8j"]
+bg_color = Color(1.03481e-06, 0.559526, 0.291091, 1)
+border_width_right = 5
+border_color = Color(0, 0, 0, 1)
 
 [node name="Statistics" type="Node"]
 script = ExtResource("1_ue8kn")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchors_preset = -1
-anchor_right = 0.516406
-anchor_bottom = 0.0430556
-metadata/_edit_use_anchors_ = true
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="Label" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(50, 30)
+[node name="Panel" type="Panel" parent="CanvasLayer"]
+offset_right = 1280.0
+offset_bottom = 360.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_52vfn")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/Panel"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/Panel/MarginContainer"]
 layout_mode = 2
-text = "Magic: "
+mouse_filter = 2
+theme_override_constants/h_separation = 60
+theme_override_constants/v_separation = 85
+columns = 5
 
-[node name="Label2" type="Label" parent="HBoxContainer"]
-custom_minimum_size = Vector2(40, 0)
+[node name="InfluenceStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
 layout_mode = 2
 
-[node name="Button" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(50, 30)
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/InfluenceStatSet"]
+custom_minimum_size = Vector2(100, 20)
 layout_mode = 2
-text = "+"
+text = "Influence: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="Button2" type="Button" parent="HBoxContainer"]
-custom_minimum_size = Vector2(50, 0)
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/InfluenceStatSet"]
+custom_minimum_size = Vector2(200, 20)
 layout_mode = 2
-text = "-"
+theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
+min_value = -100.0
+show_percentage = false
 
-[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]
+[node name="PopulationStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/PopulationStatSet"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+text = "Population: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/PopulationStatSet"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
+min_value = -100.0
+show_percentage = false
+
+[node name="WealthStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/WealthStatSet"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+text = "Wealth: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/WealthStatSet"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
+min_value = -100.0
+show_percentage = false
+
+[node name="FoodStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/FoodStatSet"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+text = "Food: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/FoodStatSet"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
+min_value = -100.0
+show_percentage = false
+
+[node name="MaterialsStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/MaterialsStatSet"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+text = "Materials: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/MaterialsStatSet"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
+min_value = -100.0
+show_percentage = false
+
+[node name="HappinessStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/HappinessStatSet"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+text = "Happiness: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/HappinessStatSet"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
+min_value = -100.0
+show_percentage = false
+
+[node name="HealthStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/HealthStatSet"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+text = "Health: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/HealthStatSet"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
+min_value = -100.0
+show_percentage = false
+
+[node name="FreedomStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/FreedomStatSet"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+text = "Freedom: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/FreedomStatSet"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
+min_value = -100.0
+show_percentage = false
+
+[node name="FaithStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/FaithStatSet"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+text = "Faith: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/FaithStatSet"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
+min_value = -100.0
+show_percentage = false
+
+[node name="EducationStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/EducationStatSet"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+text = "Education: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/EducationStatSet"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
+min_value = -100.0
+show_percentage = false
+
+[node name="MagicStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/MagicStatSet"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+text = "Magic: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/MagicStatSet"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
+min_value = -100.0
+show_percentage = false
+
+[node name="MilitaryStrengthStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/MilitaryStrengthStatSet"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+text = "Military Strength: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/MilitaryStrengthStatSet"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
+min_value = -100.0
+show_percentage = false
+
+[node name="ForeignRelationsStatSet" type="VBoxContainer" parent="CanvasLayer/Panel/MarginContainer/GridContainer"]
+layout_mode = 2
+
+[node name="Stat" type="Label" parent="CanvasLayer/Panel/MarginContainer/GridContainer/ForeignRelationsStatSet"]
+custom_minimum_size = Vector2(100, 20)
+layout_mode = 2
+text = "Foreign Relations: 0"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/Panel/MarginContainer/GridContainer/ForeignRelationsStatSet"]
+custom_minimum_size = Vector2(200, 20)
+layout_mode = 2
+theme_override_styles/background = SubResource("StyleBoxFlat_rqg63")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ngq8j")
+min_value = -100.0
+show_percentage = false
