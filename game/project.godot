@@ -21,6 +21,7 @@ State="*res://state.gd"
 Datatypes="*res://datatypes.gd"
 StatisticalGrowth="*res://StatisticControl/statistical_growth.gd"
 EventProcessing="*res://EventControl/event_processing.gd"
+Actions="*res://ActionControl/actions.gd"
 
 [display]
 
