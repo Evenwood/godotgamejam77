@@ -75,6 +75,10 @@ func set_info_text(text):
 	
 func show_info(value):
 	#print(info_text)
+	if actions.canAfford(action_id, value) == false:
+		info_text = "TOO COSTLY!" + "\n" + info_text
+	else:
+		info_text = "GOOD TO GO" + "\n" + info_text
 	info_label.text = info_text
 	info_label.set_size(Vector2.ZERO)  # Reset size to fit content
 	update_info_position()
