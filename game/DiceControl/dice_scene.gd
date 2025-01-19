@@ -14,7 +14,7 @@ const MIN_DICE = 1
 const MAX_DICE = 10
 const DICE_SPACING = 50  # Spacing between dice
 
-var num_dice = 1
+var num_dice = State.get_number_of_dice()
 
 func _ready():
 	add_to_group("dice_scene")
@@ -30,11 +30,14 @@ func _ready():
 	results_label.text = "Roll the dice!"
 
 func _on_roll_button_pressed():
+	num_dice = int(num_dice_spinner.value)
+	roll_dice()
+
+func roll_dice():
 	# Clear previous dice
 	for die in dice_container.get_children():
 		die.queue_free()
 	
-	num_dice = int(num_dice_spinner.value)
 	var total = 0
 	var results = []
 	
@@ -60,5 +63,4 @@ func _on_roll_button_pressed():
 	
 	var mapinterface = get_tree().root.find_child("MapInterface", true, false)
 	if mapinterface:
-		mapinterface.clear_dropzones()
-	
+		mapinterface.clear_dropzones()		

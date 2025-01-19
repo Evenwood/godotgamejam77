@@ -89,7 +89,7 @@ func _on_input_event(_viewport, event, _shape_idx):
 				change_appearance(dragging)
 				# Are we over the drop zone?
 				if current_drop_zone:
-					if current_drop_zone.has_dropped_die():
+					if current_drop_zone.has_die():
 						return
 					current_drop_zone.emit_signal("item_dropped", self)
 				else:
@@ -115,12 +115,10 @@ func cancel_drop():
 		
 func _on_area_entered(area):
 	if area.is_in_group("drop_zone"):
-		if area.has_dropped_die():
-			return
 		current_drop_zone = area
-		current_drop_zone.set_die_value(value)
+		#current_drop_zone.set_die_value(value)
 		# Explicitly call this so that the ordering gets set
-		current_drop_zone.on_area_entered(area)
+		current_drop_zone.on_area_entered(area, value)
 		
 func _on_area_exited(area):
 	if area == current_drop_zone:

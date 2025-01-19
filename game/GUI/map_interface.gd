@@ -33,8 +33,7 @@ func _ready() -> void:
 	setup_dropzone_positions()
 	dice_scene.position = Vector2(800, 945)
 	turn_tracker_view.position = Vector2(120, 650)
-	turn_tracker_view.next_turn()
-	turn_tracker_view.next_turn()
+	dice_scene.roll_dice()
 
 func _process(delta):
 	influence.text = "Inf: %d" % [State.influence]
@@ -75,13 +74,14 @@ func load_dropzones() -> void:
 			text = "Otherworldly Ritual"
 		elif key == "ForbiddenResearch":
 			text = "Forbidden Research"
+		text += " (" + Actions.getCostAbbreviations(Datatypes.ACTIONS[key]) + ")"
 		dropzone.set_label_text(text)
 		dropzone.set_info_text(text)
 		
-		var row = i / grid_columns
-		var col = i % grid_columns
-		dropzone.position = Vector2(col * spacing, row * spacing)
-		i += 1
+		#var row = i / grid_columns
+		#var col = i % grid_columns
+		#dropzone.position = Vector2(col * spacing, row * spacing)
+		#i += 1
 		
 func clear_dropzones():
 	for dropzone in dropzones:
