@@ -35,6 +35,8 @@ func _on_roll_button_pressed():
 	roll_dice()
 
 func roll_dice():
+	$AudioStreamPlayer2D.play()
+	
 	# Clear previous dice
 	for die in dice_container.get_children():
 		die.queue_free()
