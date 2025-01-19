@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cn8p8gir5v5ib"]
+[gd_scene load_steps=3 format=3 uid="uid://cn8p8gir5v5ib"]
 
 [ext_resource type="Script" path="res://DiceControl/dice_scene.gd" id="1_cvhcw"]
+[ext_resource type="AudioStream" uid="uid://3j51om42eiuq" path="res://Assets/RollingDice.mp3" id="2_qism3"]
 
 [node name="DiceScene" type="Node2D"]
 script = ExtResource("1_cvhcw")
@@ -30,3 +31,6 @@ layout_mode = 2
 text = "Result"
 
 [node name="DiceContainer" type="Node2D" parent="."]
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_qism3")
