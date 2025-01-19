@@ -23,6 +23,7 @@ func _on_quit_pressed() -> void:
 
 
 func _on_restart_pressed() -> void:
+	State.reset_state()
 	get_tree().reload_current_scene()
 
 

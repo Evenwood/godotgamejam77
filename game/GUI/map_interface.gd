@@ -3,6 +3,19 @@ extends Control
 @onready var dice_scene: Node2D = $PanelContainer/DiceScene
 @onready var pause_menu = $PanelContainer2/PauseMenu
 @onready var stat_screen = $StatScreen
+@onready var influence: Label = $StatMargins/StatGrid/Influence
+@onready var population: Label = $StatMargins/StatGrid/Population
+@onready var wealth: Label = $StatMargins/StatGrid/Wealth
+@onready var food: Label = $StatMargins/StatGrid/Food
+@onready var materials: Label = $StatMargins/StatGrid/Materials
+@onready var happiness: Label = $StatMargins/StatGrid/Happiness
+@onready var health: Label = $StatMargins/StatGrid/Health
+@onready var freedom: Label = $StatMargins/StatGrid/Freedom
+@onready var faith: Label = $StatMargins/StatGrid/Faith
+@onready var education: Label = $StatMargins/StatGrid/Education
+@onready var magic: Label = $StatMargins/StatGrid/Magic
+@onready var military_strength: Label = $StatMargins/StatGrid/MilitaryStrength
+@onready var foreign_relations: Label = $StatMargins/StatGrid/ForeignRelations
 
 var dropzone_scene = preload("res://DropZoneControl/drop_zone.tscn")
 #var Actions = preload("res://ActionControl/actions.gd")
@@ -19,6 +32,19 @@ func _ready() -> void:
 	dice_scene.position = Vector2(800, 945)
 
 func _process(delta):
+	influence.text = "Inf: %d" % [State.influence]
+	population.text = "Pop: %d" % [State.population]
+	wealth.text = "Wea: %d" % [State.wealth]
+	food.text = "Food: %d" % [State.food]
+	materials.text = "Mat: %d" % [State.materials]
+	happiness.text = "Hap: %d" % [State.happiness]
+	health.text = "Hea: %d" % [State.health]
+	freedom.text = "Free: %d" % [State.freedom]
+	faith.text = "Fai: %d" % [State.faith]
+	education.text = "Edu: %d" % [State.education]
+	magic.text = "Mag: %d" % [State.magic]
+	military_strength.text = "Mil Str: %d" % [State.military_strength]
+	foreign_relations.text = "For Rel: %d" % [State.foreign_relations]
 	if Input.is_action_just_pressed("escape"):
 		pauseMenu()
 
