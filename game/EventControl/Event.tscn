@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dxayhd2enrxhi"]
 
-[ext_resource type="Script" path="res://EventControl/event.gd" id="1_rgnu6"]
+[ext_resource type="Script" path="res://EventControl/event.gd" id="1_n8mtr"]
 [ext_resource type="Texture2D" uid="uid://uwx3gpirfrsv" path="res://Assets/test-event-image.png" id="1_strl5"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dn0gy"]
@@ -22,82 +22,77 @@ grow_begin = 0.0
 grow_end = -1.0
 thickness = 5
 
-[node name="Event" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_rgnu6")
-metadata/_edit_use_anchors_ = true
+[node name="EventCanvas" type="CanvasLayer"]
+script = ExtResource("1_n8mtr")
 
-[node name="EventCanvas" type="CanvasLayer" parent="."]
-
-[node name="Panel" type="Panel" parent="EventCanvas"]
-offset_right = 360.0
+[node name="Panel" type="Panel" parent="."]
+offset_right = 679.0
 offset_bottom = 720.0
 theme_override_styles/panel = SubResource("StyleBoxFlat_dn0gy")
 
-[node name="HSeparator" type="HSeparator" parent="EventCanvas"]
+[node name="HSeparator" type="HSeparator" parent="."]
 offset_top = 43.0
-offset_right = 360.0
+offset_right = 679.0
 offset_bottom = 46.0
 theme_override_constants/separation = 3
 theme_override_styles/separator = SubResource("StyleBoxLine_ibdnr")
 
-[node name="EventUIContainer" type="VBoxContainer" parent="EventCanvas"]
+[node name="EventUIContainer" type="VBoxContainer" parent="."]
 anchors_preset = -1
-anchor_right = 0.28125
+anchor_right = 0.530469
 anchor_bottom = 1.0
 metadata/_edit_use_anchors_ = true
 
-[node name="EventName" type="Label" parent="EventCanvas/EventUIContainer"]
+[node name="EventName" type="Label" parent="EventUIContainer"]
 custom_minimum_size = Vector2(0, 45)
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Event Name"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 uppercase = true
 
-[node name="EventDescriptionContainer" type="HBoxContainer" parent="EventCanvas/EventUIContainer"]
+[node name="EventDescriptionContainer" type="HBoxContainer" parent="EventUIContainer"]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="MarginContainer" type="MarginContainer" parent="EventCanvas/EventUIContainer/EventDescriptionContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="EventUIContainer/EventDescriptionContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 15
 theme_override_constants/margin_right = 0
 
-[node name="EventImage" type="TextureRect" parent="EventCanvas/EventUIContainer/EventDescriptionContainer/MarginContainer"]
+[node name="EventImage" type="TextureRect" parent="EventUIContainer/EventDescriptionContainer/MarginContainer"]
 layout_mode = 2
 texture = ExtResource("1_strl5")
 stretch_mode = 2
 
-[node name="EventDescription" type="RichTextLabel" parent="EventCanvas/EventUIContainer/EventDescriptionContainer"]
-custom_minimum_size = Vector2(160, 280)
+[node name="EventDescription" type="RichTextLabel" parent="EventUIContainer/EventDescriptionContainer"]
+custom_minimum_size = Vector2(450, 280)
 layout_mode = 2
 text = "Event Description"
 
-[node name="ChoiceContainer" type="CenterContainer" parent="EventCanvas/EventUIContainer"]
+[node name="ChoiceContainer" type="CenterContainer" parent="EventUIContainer"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EventCanvas/EventUIContainer/ChoiceContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="EventUIContainer/ChoiceContainer"]
 layout_mode = 2
 theme_override_constants/separation = 30
 
-[node name="Option1" type="Button" parent="EventCanvas/EventUIContainer/ChoiceContainer/VBoxContainer"]
+[node name="Option1" type="Button" parent="EventUIContainer/ChoiceContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 text = "Option 1"
+autowrap_mode = 2
 
-[node name="Option2" type="Button" parent="EventCanvas/EventUIContainer/ChoiceContainer/VBoxContainer"]
+[node name="Option2" type="Button" parent="EventUIContainer/ChoiceContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 text = "Option 2"
+autowrap_mode = 2
 
-[node name="Option3" type="Button" parent="EventCanvas/EventUIContainer/ChoiceContainer/VBoxContainer"]
+[node name="Option3" type="Button" parent="EventUIContainer/ChoiceContainer/VBoxContainer"]
 custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 text = "Option 3"
-
-[connection signal="pressed" from="EventCanvas/EventUIContainer/ChoiceContainer/VBoxContainer/Option1" to="." method="_on_option_1_pressed"]
-[connection signal="pressed" from="EventCanvas/EventUIContainer/ChoiceContainer/VBoxContainer/Option2" to="." method="_on_option_2_pressed"]
-[connection signal="pressed" from="EventCanvas/EventUIContainer/ChoiceContainer/VBoxContainer/Option3" to="." method="_on_option_3_pressed"]
+autowrap_mode = 2
