@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cvo5qa4xbop2t"]
+[gd_scene load_steps=5 format=3 uid="uid://cvo5qa4xbop2t"]
 
 [ext_resource type="Texture2D" uid="uid://bf1qlolrgrxik" path="res://Assets/Credits.jpg" id="1_n6ldj"]
 [ext_resource type="Script" path="res://GUI/credits.gd" id="1_od8c7"]
+[ext_resource type="AudioStream" uid="uid://dv1j2xj181cao" path="res://Assets/Gregorian Chant.mp3" id="3_7lcoc"]
 
 [sub_resource type="Theme" id="Theme_28eti"]
 
@@ -45,6 +46,10 @@ text = "BACK"
 [node name="Credit_quit" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "QUIT"
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_7lcoc")
+autoplay = true
 
 [connection signal="pressed" from="PanelContainer/VBoxContainer/back" to="." method="_on_back_pressed"]
 [connection signal="pressed" from="PanelContainer/VBoxContainer/Credit_quit" to="." method="_on_credit_quit_pressed"]
