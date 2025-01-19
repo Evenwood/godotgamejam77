@@ -140,3 +140,7 @@ func _on_canceled():
 	
 func has_dropped_die():
 	return filled
+	
+func clear():
+	dropped_die = null
+	filled = false

@@ -47,6 +47,10 @@ func load_dropzones() -> void:
 		var col = i % grid_columns
 		dropzone.position = Vector2(col * spacing, row * spacing)
 		i += 1
+		
+func clear_dropzones():
+	for dropzone in dropzones:
+		dropzone.clear()
 
 func setup_dropzone_positions() -> void:
 	# Diplomacy, Clairvoyance, Harvest, Explore, Market, Shrine, Tower, Prison, Barracks, 

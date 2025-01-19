@@ -57,3 +57,8 @@ func _on_roll_button_pressed():
 	
 	# Update results display
 	results_label.text = "Results: " + str(results) + " Total: " + str(total)
+	
+	var mapinterface = get_tree().root.find_child("MapInterface", true, false)
+	if mapinterface:
+		mapinterface.clear_dropzones()
+	
