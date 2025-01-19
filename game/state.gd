@@ -23,6 +23,10 @@ var happiness = 0
 var chaos = 0
 var order = 0
 
+# Global turn tracking
+var number_of_turns = 5
+var number_of_actions_per_turn = 1
+
 func reset_state() -> void:
 	education = 0
 	faith = 0
@@ -39,6 +43,18 @@ func reset_state() -> void:
 	happiness = 0
 	chaos = 0
 	order = 0
+	
+func set_number_of_turns(n):
+	number_of_turns = n
+	
+func get_number_of_turns() -> int:
+	return number_of_turns
+	
+func set_number_of_actions_per_turn(n:int) -> void:
+	number_of_actions_per_turn = n
+	
+func get_number_of_actions_per_turn() -> int:
+	return number_of_actions_per_turn
 	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

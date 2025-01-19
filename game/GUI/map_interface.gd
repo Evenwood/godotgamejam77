@@ -17,6 +17,7 @@ extends Control
 @onready var military_strength: Button = $StatMargins/StatGrid/MilitaryStrength
 @onready var foreign_relations: Button = $StatMargins/StatGrid/ForeignRelations
 @onready var stat_info: Label = $StatInfo
+@onready var turn_tracker_view : HBoxContainer = $TurnTrackerView
 
 var dropzone_scene = preload("res://DropZoneControl/drop_zone.tscn")
 #var Actions = preload("res://ActionControl/actions.gd")
@@ -31,6 +32,9 @@ func _ready() -> void:
 	load_dropzones()
 	setup_dropzone_positions()
 	dice_scene.position = Vector2(800, 945)
+	turn_tracker_view.position = Vector2(120, 650)
+	turn_tracker_view.next_turn()
+	turn_tracker_view.next_turn()
 
 func _process(delta):
 	influence.text = "Inf: %d" % [State.influence]

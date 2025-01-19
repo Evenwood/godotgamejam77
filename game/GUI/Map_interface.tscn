@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://bblcdjvp3e88x"]
+[gd_scene load_steps=10 format=3 uid="uid://bblcdjvp3e88x"]
 
 [ext_resource type="Script" path="res://GUI/map_interface.gd" id="1_3htrq"]
 [ext_resource type="Texture2D" uid="uid://dqtb4nyvell4j" path="res://Assets/Game_board.jpg" id="1_7b7h7"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://cwcup6x6mim5w" path="res://GUI/pause_menu.tscn" id="4_wtv0c"]
 [ext_resource type="AudioStream" uid="uid://ciloxw376cues" path="res://Assets/That Zen Moment.mp3" id="5_rpubq"]
 [ext_resource type="PackedScene" uid="uid://d0qqsink86n8v" path="res://StatisticControl/Statistics.tscn" id="6_6r02h"]
+[ext_resource type="PackedScene" uid="uid://sfsn3f7tst4s" path="res://TurnTrackerControl/turn_tracker_view.tscn" id="7_5yqc8"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nbddc"]
 bg_color = Color(0.937255, 0.858824, 0.717647, 0.415686)
@@ -222,6 +223,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_j4v6i")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="TurnTrackerView" parent="." instance=ExtResource("7_5yqc8")]
+layout_mode = 0
 
 [connection signal="pressed" from="StatMargins/StatGrid/Influence" to="." method="_on_influence_pressed"]
 [connection signal="pressed" from="StatMargins/StatGrid/Population" to="." method="_on_population_pressed"]
