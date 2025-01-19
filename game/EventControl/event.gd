@@ -57,7 +57,7 @@ func _on_event_results_confirmed() -> void:
 	setEventDetails()
 	State.number_of_events += 1
 	if(State.number_of_events == 4):
-		get_tree().change_scene_to_file("res://GUI/credits.tscn")
+		get_tree().change_scene_to_file("res://GUI/victory.tscn")
 
 
 func _on_event_results_canceled() -> void:

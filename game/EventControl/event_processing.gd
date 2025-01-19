@@ -24,7 +24,7 @@ func _process(delta: float) -> void:
 func getEventDescription() -> String:
 	var description
 	if(State.number_of_events == 4):
-		get_tree().change_scene_to_file("res://GUI/credits.tscn")
+		get_tree().change_scene_to_file("res://GUI/victory.tscn")
 		State.number_of_events = 0
 	match event_array[State.number_of_events]:
 		Datatypes.MAJOR_EVENTS.VolcanicEruption:
