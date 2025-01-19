@@ -146,10 +146,157 @@ func getEventResults(choice: int) -> String:
 				2:
 					result = "It'll exhaust much our military but no doubt we can fight off any and all threats. Faith and morale will grow from victory but this will be permanently taxing on all our internal investments."
 				3:
-					result = "We'll exhaust maybe of our foreign connections and accrued favors to do this, but yes, I think it'll work. Much good can come from a Realms potentially united!"
+					result = "We'll exhaust many of our foreign connections and accrued favors to do this, but yes, I think it'll work. Much good can come from a Realms potentially united!"
 				_:
 					result = "UNKNOWN"
 	return result
 	
 func triggerEvent(choice: int) -> void:
-	pass
+	match event_array[State.number_of_events]:
+		Datatypes.MAJOR_EVENTS.VolcanicEruption:
+			match choice:
+				1:
+					var magic = State.magic
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Magic, StatisticalGrowth.MAGIC_MAX - 10)
+					var diff = 0
+					if(magic > 0):
+						diff = magic - State.magic
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Happiness, diff + 10)
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Health, 10)
+					Actions.tower_mod += 3
+					Actions.academy_mod += 1
+				2:
+					var wealth = State.wealth
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Wealth, 200)
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Materials, 35)
+					var diff = 0
+					if (wealth > 200):
+						diff = wealth - State.wealth
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Happiness, diff + 10)
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Health, 20)
+					Actions.infrastructure_mod += 4
+				3:
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Faith, StatisticalGrowth.FAITH_MAX + 20)
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Happiness, State.faith)
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Population, 100)
+					Actions.shrine_mod += 6
+					Actions.charity_mod += 6
+					Actions.clairvoyance_mod += 1
+					
+				_:
+					pass
+		Datatypes.MAJOR_EVENTS.RampantPoverty:
+			match choice:
+				1:
+					var wealth = State.wealth
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Wealth, 200)
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Food, 55)
+					var diff = 0
+					if (wealth > 200):
+						diff = wealth - State.wealth
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Happiness, diff + 10)
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Population, 50)
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Influence, 20)
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Health, 10)
+					Actions.harvest_mod += 2
+					Actions.hold_mod += 1
+					if(State.food >= 0):
+						Actions.global_mod += 1
+				2:
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Freedom, 40)
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Happiness, State.wealth / 10)
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Population, 50)
+					Actions.market_mod += 10
+					Actions.charity_mod -= 5
+					Actions.shrine_mod -= 3
+				3:
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Wealth, 20)
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Materials, 20)
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Happiness, 40)
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Population, 40)
+					Actions.harvest_mod += 8
+					Actions.revelry_mod -= 4
+				_:
+					pass
+		Datatypes.MAJOR_EVENTS.PoliticalDivision:
+			match choice:
+				1:
+					var edu = State.education
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Materials, 50)
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Education, 30)
+					if (State.education > 0):
+						StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.ForeignRelations, edu)
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Happiness, 10)
+					Actions.academy_mod += 6
+					Actions.barracks_mod -= 2
+					Actions.warfare_mod -= 2
+					Actions.hold_mod -= 2
+				2:
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Influence, StatisticalGrowth.INFLUENCE_MAX + 10)
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Happiness, State.influence)
+					Actions.global_mod += 2
+				3:
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Freedom, StatisticalGrowth.FREEDOM_MAX)
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Happiness, State.freedom)
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Education, State.freedom / 2)
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Influence, State.freedom * 2)
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.MilitaryStrength, State.freedom * 2)
+					Actions.barracks_mod -= 3
+					Actions.warfare_mod -= 3
+					Actions.diplomacy_mod += 5
+				_:
+					pass
+		Datatypes.MAJOR_EVENTS.WarringNations:
+			match choice:
+				1:
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Wealth, 1000)
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.MilitaryStrength, StatisticalGrowth.MILITARY_STRENGTH_MAX + 10)
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Influence, State.military_strength / 2)
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Health, State.military_strength)
+					Actions.barracks_mod += 8
+					Actions.warfare_mod += 8
+					Actions.hold_mod += 4
+					Actions.prison_mod += 4
+					Actions.academy_mod -= 4
+					Actions.tower_mod -= 2
+					Actions.dark_ritual_mod -= 2
+					Actions.otherworldly_ritual_mod -= 2
+					Actions.charity_mod -= 2
+				2:
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Food, 40)
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Materials, 40)
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.ForeignRelations, StatisticalGrowth.FOREIGN_RELATIONS_MAX)
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.MilitaryStrength, State.foreign_relations)
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Happiness, 20)
+					Actions.barracks_mod -= 3
+					Actions.warfare_mod -= 5
+				3:
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.MilitaryStrength, 30)
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Happiness, 60)
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.ForeignRelations, 30)
+					Actions.global_mod += 3
+					Actions.barracks_mod -= 6
+					Actions.warfare_mod -= 6
+					Actions.explore_mod -= 6
+					
+				_:
+					pass
+		Datatypes.MAJOR_EVENTS.DarkOneDescent:
+			match choice:
+				1:
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Faith, StatisticalGrowth.FAITH_MAX)
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Happiness, 50)
+					Actions.clairvoyance_mod += 10
+				2:
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.MilitaryStrength, StatisticalGrowth.MILITARY_STRENGTH_MAX)
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Faith, 30)
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Happiness, StatisticalGrowth.HAPPINESS_MAX + 20)
+					Actions.global_mod -= 2
+				3:
+					StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.ForeignRelations, StatisticalGrowth.FOREIGN_RELATIONS_MAX)
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Happiness, 40)
+					StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Health, 40)
+					Actions.global_mod += 1
+					Actions.diplomacy_mod += 5
+				_:
+					pass
