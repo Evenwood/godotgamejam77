@@ -22,6 +22,7 @@ default_font = SubResource("FontVariation_cnvh5")
 
 [sub_resource type="SystemFont" id="SystemFont_2tcm3"]
 font_weight = 450
+subpixel_positioning = 0
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uw8t0"]
 content_margin_left = 29.0

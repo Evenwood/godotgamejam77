@@ -3,6 +3,7 @@ extends Control
 @onready var dice_scene: Node2D = $PanelContainer/DiceScene
 @onready var pause_menu = $PanelContainer2/PauseMenu
 @onready var stat_screen = $StatScreen
+@onready var event_canvas: CanvasLayer = $EventCanvas
 @onready var influence: Button = $StatMargins/StatGrid/Influence
 @onready var population: Button = $StatMargins/StatGrid/Population
 @onready var wealth: Button = $StatMargins/StatGrid/Wealth
