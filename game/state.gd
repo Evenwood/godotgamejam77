@@ -23,6 +23,23 @@ var happiness = 0
 var chaos = 0
 var order = 0
 
+func reset_state() -> void:
+	education = 0
+	faith = 0
+	foreign_relations = 0
+	freedom = 0
+	health = 0
+	influence = 0
+	materials = 0
+	military_strength = 0
+	population = 0
+	wealth = 0
+	food = 0
+	magic = 0
+	happiness = 0
+	chaos = 0
+	order = 0
+	
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass # Replace with function body.

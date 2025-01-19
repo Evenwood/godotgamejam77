@@ -1,10 +1,35 @@
-[gd_scene load_steps=6 format=3 uid="uid://bblcdjvp3e88x"]
+[gd_scene load_steps=9 format=3 uid="uid://bblcdjvp3e88x"]
 
 [ext_resource type="Script" path="res://GUI/map_interface.gd" id="1_3htrq"]
 [ext_resource type="Texture2D" uid="uid://dqtb4nyvell4j" path="res://Assets/Game_board.jpg" id="1_7b7h7"]
 [ext_resource type="PackedScene" uid="uid://cn8p8gir5v5ib" path="res://DiceControl/dice_scene.tscn" id="3_h6jwy"]
 [ext_resource type="PackedScene" uid="uid://cwcup6x6mim5w" path="res://GUI/pause_menu.tscn" id="4_wtv0c"]
 [ext_resource type="AudioStream" uid="uid://ciloxw376cues" path="res://Assets/That Zen Moment.mp3" id="5_rpubq"]
+[ext_resource type="PackedScene" uid="uid://d0qqsink86n8v" path="res://StatisticControl/Statistics.tscn" id="6_6r02h"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nbddc"]
+bg_color = Color(0.937255, 0.858824, 0.717647, 0.415686)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 0.592157)
+border_blend = true
+shadow_size = 2
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_j4v6i"]
+bg_color = Color(0.168627, 0.12549, 0.0470588, 0.482353)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+shadow_size = 4
 
 [node name="MapInterface" type="Control"]
 layout_mode = 3
@@ -34,8 +59,181 @@ offset_bottom = 40.0
 
 [node name="PauseMenu" parent="PanelContainer2" instance=ExtResource("4_wtv0c")]
 visible = false
+z_index = 1
 layout_mode = 2
 
 [node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_rpubq")
 autoplay = true
+
+[node name="StatMargins" type="MarginContainer" parent="."]
+layout_mode = 0
+offset_left = 1035.0
+offset_top = 108.0
+offset_right = 1235.0
+offset_bottom = 453.0
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="StatGrid" type="GridContainer" parent="StatMargins"]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/h_separation = 23
+theme_override_constants/v_separation = 22
+columns = 2
+
+[node name="Influence" type="Button" parent="StatMargins/StatGrid"]
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+tooltip_text = "Influence"
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
+text = "Inf: 0"
+
+[node name="Population" type="Button" parent="StatMargins/StatGrid"]
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+tooltip_text = "Population"
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
+text = "Pop: 0
+"
+
+[node name="Wealth" type="Button" parent="StatMargins/StatGrid"]
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+tooltip_text = "Wealth"
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
+text = "Wea: 0"
+
+[node name="Food" type="Button" parent="StatMargins/StatGrid"]
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+tooltip_text = "Food"
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
+text = "Food: 0
+"
+
+[node name="Materials" type="Button" parent="StatMargins/StatGrid"]
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+tooltip_text = "Materials"
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
+text = "Mat: 0
+"
+
+[node name="Happiness" type="Button" parent="StatMargins/StatGrid"]
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+tooltip_text = "Happiness"
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
+text = "Hap: 0
+"
+
+[node name="Health" type="Button" parent="StatMargins/StatGrid"]
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+tooltip_text = "Health"
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
+text = "Hea: 0
+"
+
+[node name="Freedom" type="Button" parent="StatMargins/StatGrid"]
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+tooltip_text = "Freedom"
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
+text = "Free: 0"
+
+[node name="Faith" type="Button" parent="StatMargins/StatGrid"]
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+tooltip_text = "Faith"
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
+text = "Fai: 0
+"
+
+[node name="Education" type="Button" parent="StatMargins/StatGrid"]
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+tooltip_text = "Education"
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
+text = "Edu: 0
+"
+
+[node name="Magic" type="Button" parent="StatMargins/StatGrid"]
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+tooltip_text = "Magic"
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
+text = "Mag: 0
+"
+
+[node name="MilitaryStrength" type="Button" parent="StatMargins/StatGrid"]
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+tooltip_text = "Military Strength"
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
+text = "Mil Str: 0
+"
+
+[node name="ForeignRelations" type="Button" parent="StatMargins/StatGrid"]
+custom_minimum_size = Vector2(60, 20)
+layout_mode = 2
+tooltip_text = "Foreign Relations"
+mouse_filter = 1
+theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
+text = "For Rel: 0
+"
+
+[node name="StatScreen" parent="." instance=ExtResource("6_6r02h")]
+visible = false
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1073.0
+offset_top = 511.0
+offset_right = 1183.0
+offset_bottom = 546.0
+text = "View Stats"
+
+[node name="StatInfo" type="Label" parent="."]
+visible = false
+z_index = 1
+layout_mode = 0
+offset_left = 750.0
+offset_top = 95.0
+offset_right = 1020.0
+offset_bottom = 337.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_j4v6i")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[connection signal="pressed" from="StatMargins/StatGrid/Influence" to="." method="_on_influence_pressed"]
+[connection signal="pressed" from="StatMargins/StatGrid/Population" to="." method="_on_population_pressed"]
+[connection signal="pressed" from="StatMargins/StatGrid/Wealth" to="." method="_on_wealth_pressed"]
+[connection signal="pressed" from="StatMargins/StatGrid/Food" to="." method="_on_food_pressed"]
+[connection signal="pressed" from="StatMargins/StatGrid/Materials" to="." method="_on_materials_pressed"]
+[connection signal="pressed" from="StatMargins/StatGrid/Happiness" to="." method="_on_happiness_pressed"]
+[connection signal="pressed" from="StatMargins/StatGrid/Health" to="." method="_on_health_pressed"]
+[connection signal="pressed" from="StatMargins/StatGrid/Freedom" to="." method="_on_freedom_pressed"]
+[connection signal="pressed" from="StatMargins/StatGrid/Faith" to="." method="_on_faith_pressed"]
+[connection signal="pressed" from="StatMargins/StatGrid/Education" to="." method="_on_education_pressed"]
+[connection signal="pressed" from="StatMargins/StatGrid/Magic" to="." method="_on_magic_pressed"]
+[connection signal="pressed" from="StatMargins/StatGrid/MilitaryStrength" to="." method="_on_military_strength_pressed"]
+[connection signal="pressed" from="StatMargins/StatGrid/ForeignRelations" to="." method="_on_foreign_relations_pressed"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

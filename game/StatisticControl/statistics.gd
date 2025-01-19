@@ -96,4 +96,5 @@ func setBarsandLabels() -> void:
 	happiness_label.text = "Happiness: %d" % [State.happiness]
 	happiness_bar.value = State.happiness
 
-	
+func _on_close_requested() -> void:
+	$".".hide()
