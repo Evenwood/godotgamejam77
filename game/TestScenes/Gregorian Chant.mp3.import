@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bokk1ou6r6esm"
+path="res://.godot/imported/Gregorian Chant.mp3-78b9a6690aae087eb4b462aad7bfc563.mp3str"
+
+[deps]
+
+source_file="res://TestScenes/Gregorian Chant.mp3"
+dest_files=["res://.godot/imported/Gregorian Chant.mp3-78b9a6690aae087eb4b462aad7bfc563.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
