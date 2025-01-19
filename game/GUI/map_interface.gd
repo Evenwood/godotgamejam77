@@ -4,7 +4,7 @@ extends Control
 @onready var pause_menu = $PanelContainer2/PauseMenu
 
 var dropzone_scene = preload("res://DropZoneControl/drop_zone.tscn")
-var Actions = preload("res://ActionControl/actions.gd")
+#var Actions = preload("res://ActionControl/actions.gd")
 var dropzones = []
 var dropzone_positions = {}
 var paused = false;

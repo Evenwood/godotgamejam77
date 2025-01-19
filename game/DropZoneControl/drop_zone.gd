@@ -18,6 +18,7 @@ var die_value = 1
 var dialog = ConfirmationDialog.new()
 var dropped_die = null
 var filled = false
+var actions = Actions.new()
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -68,7 +69,7 @@ func set_info_text(text):
 	info_text = text
 	
 func show_info():
-	print(info_text)
+	#print(info_text)
 	info_label.text = info_text
 	info_label.set_size(Vector2.ZERO)  # Reset size to fit content
 	update_info_position()
@@ -127,6 +128,9 @@ func _on_confirmed():
 	var dice_scene = get_tree().root.find_child("DiceScene", true, false)
 	dropped_die.position = dice_scene.to_local(global_position + sprite.size / 2)
 	dropped_die.z_index = z_index + 1 # Move it in front
+	#print(State.influence)
+	actions.triggerAction(action_id, die_value)
+	#print(State.influence)
 	filled = true
 
 func _on_canceled():

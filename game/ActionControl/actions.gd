@@ -56,7 +56,7 @@ func modifyValue(modifier: int, val: int) -> int:
 	return val
 
 static func actionText(actionID: Datatypes.ACTIONS, val: int) -> String:
-	var text = "WIP - " + Datatypes.get_action_string(actionID) + " " + str(val)
+	var text = ""
 	match actionID:
 		Datatypes.ACTIONS.Diplomacy:
 			#var rng = RandomNumberGenerator.new()
