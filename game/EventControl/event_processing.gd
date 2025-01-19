@@ -96,3 +96,60 @@ func getEventOptionThree() -> String:
 			option_three = "Unity across the realms is what shall get us through this. I propose a council of nations."
 	return option_three
 			
+func getEventResults(choice: int) -> String:
+	var result
+	match event_array[State.number_of_events]:
+		Datatypes.MAJOR_EVENTS.VolcanicEruption:
+			match choice:
+				1:
+					result = "This will expend a lot of magical power; however, it should keep the people safe and happy and may even improve our magical studies in the future."
+				2:
+					result = "This will cost a lot of wealth and materials but the people will be safe, if not a bit rattled. Should lead to great infrastructural development opportunities though."
+				3:
+					result = "The people's faith will skyrocket and opportunities for prayer at the shrine and gifts of charity will greatly strengthen...but our people WILL suffer."
+				_:
+					result = "UNKNOWN"
+		Datatypes.MAJOR_EVENTS.RampantPoverty:
+			match choice:
+				1:
+					result = "We'll be expending a lot of wealth and food, but surely our people will be beyond thrilled and may even be more willing to cooperate in the future."
+				2:
+					result = "Undoubtedly the people will enjoy new freedoms and the market will get much stronger; though its unclear if this will actually solve the problem."
+				3:
+					result = "We'll pay a little in wealth and materials, but make up for it quickly by heighting our harvesting efforts. I doubt the impoverished will be very happy with this deal however."
+				_:
+					result = "UNKNOWN"
+		Datatypes.MAJOR_EVENTS.PoliticalDivision:
+			match choice:
+				1:
+					result = "We'll have to expend many materials and tap into our education funding, but it should be quite the show! May even energize the academy and draw the attention of other nations...but martial exploits will start lacking."
+				2:
+					result = "Certainly, our influence will grow and unity will strengthen much of what we do; however, lessened freedom comes with great discontent."
+				3:
+					result = "We'll become a home of freedom and innovation where people can freely speak their minds! Of course, you do accept this will weaken your claims to power and influence, yes?"
+				_:
+					result = "UNKNOWN"
+		Datatypes.MAJOR_EVENTS.WarringNations:
+			match choice:
+				1:
+					result = "We'll invest our wealth heavily into bolstering our military strength. The barracks shall be greater and wars more easily won. Many other less martial efforts will suffer though and the people may grow weary."
+				2:
+					result = "Gifts of food and material goods offered at a premium should bolster our foreign relations. The people will take a hit to morale though and we'll be forced to weaken our armies."
+				3:
+					result = "Through this chance we can strengthen the vast majority of our nation and find a great many investment opportunities. While the people may be happy with isolation, other nations will not and our armies and exploration efforts will falter greatly."
+				_:
+					result = "UNKNOWN"
+		Datatypes.MAJOR_EVENTS.DarkOneDescent:
+			match choice:
+				1:
+					result = "This is asking much of the people's faith but should the gods hear our prayers, fate shall surely smile upon us. This should allievate the people's worries and greatly enhance our clairvoyance."
+				2:
+					result = "It'll exhaust much our military but no doubt we can fight off any and all threats. Faith and morale will grow from victory but this will be permanently taxing on all our internal investments."
+				3:
+					result = "We'll exhaust maybe of our foreign connections and accrued favors to do this, but yes, I think it'll work. Much good can come from a Realms potentially united!"
+				_:
+					result = "UNKNOWN"
+	return result
+	
+func triggerEvent(choice: int) -> void:
+	pass

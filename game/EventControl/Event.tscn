@@ -96,3 +96,18 @@ custom_minimum_size = Vector2(300, 100)
 layout_mode = 2
 text = "Option 3"
 autowrap_mode = 2
+
+[node name="EventResults" type="ConfirmationDialog" parent="."]
+title = "Results"
+position = Vector2i(190, 190)
+size = Vector2i(300, 300)
+ok_button_text = "Accept"
+dialog_autowrap = true
+cancel_button_text = "Maybe Not"
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="EventUIContainer/ChoiceContainer/VBoxContainer/Option1" to="." method="_on_option_1_pressed"]
+[connection signal="pressed" from="EventUIContainer/ChoiceContainer/VBoxContainer/Option2" to="." method="_on_option_2_pressed"]
+[connection signal="pressed" from="EventUIContainer/ChoiceContainer/VBoxContainer/Option3" to="." method="_on_option_3_pressed"]
+[connection signal="canceled" from="EventResults" to="." method="_on_event_results_canceled"]
+[connection signal="confirmed" from="EventResults" to="." method="_on_event_results_confirmed"]
