@@ -74,6 +74,8 @@ columns = 2
 [node name="Influence" type="Label" parent="StatMargins/StatGrid"]
 custom_minimum_size = Vector2(60, 20)
 layout_mode = 2
+tooltip_text = "Influence"
+mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
 text = "Inf: 0"
 horizontal_alignment = 1
@@ -81,6 +83,8 @@ horizontal_alignment = 1
 [node name="Population" type="Label" parent="StatMargins/StatGrid"]
 custom_minimum_size = Vector2(60, 20)
 layout_mode = 2
+tooltip_text = "Population"
+mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
 text = "Pop: 0
 "
@@ -89,6 +93,8 @@ horizontal_alignment = 1
 [node name="Wealth" type="Label" parent="StatMargins/StatGrid"]
 custom_minimum_size = Vector2(60, 20)
 layout_mode = 2
+tooltip_text = "Wealth"
+mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
 text = "Wea: 0"
 horizontal_alignment = 1
@@ -96,6 +102,8 @@ horizontal_alignment = 1
 [node name="Food" type="Label" parent="StatMargins/StatGrid"]
 custom_minimum_size = Vector2(60, 20)
 layout_mode = 2
+tooltip_text = "Food"
+mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
 text = "Food: 0
 "
@@ -104,6 +112,8 @@ horizontal_alignment = 1
 [node name="Materials" type="Label" parent="StatMargins/StatGrid"]
 custom_minimum_size = Vector2(60, 20)
 layout_mode = 2
+tooltip_text = "Materials"
+mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
 text = "Mat: 0
 "
@@ -112,6 +122,8 @@ horizontal_alignment = 1
 [node name="Happiness" type="Label" parent="StatMargins/StatGrid"]
 custom_minimum_size = Vector2(60, 20)
 layout_mode = 2
+tooltip_text = "Happiness"
+mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
 text = "Hap: 0
 "
@@ -120,6 +132,8 @@ horizontal_alignment = 1
 [node name="Health" type="Label" parent="StatMargins/StatGrid"]
 custom_minimum_size = Vector2(60, 20)
 layout_mode = 2
+tooltip_text = "Health"
+mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
 text = "Hea: 0
 "
@@ -128,6 +142,8 @@ horizontal_alignment = 1
 [node name="Freedom" type="Label" parent="StatMargins/StatGrid"]
 custom_minimum_size = Vector2(60, 20)
 layout_mode = 2
+tooltip_text = "Freedom"
+mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
 text = "Free: 0"
 horizontal_alignment = 1
@@ -135,6 +151,8 @@ horizontal_alignment = 1
 [node name="Faith" type="Label" parent="StatMargins/StatGrid"]
 custom_minimum_size = Vector2(60, 20)
 layout_mode = 2
+tooltip_text = "Faith"
+mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
 text = "Fai: 0
 "
@@ -143,6 +161,8 @@ horizontal_alignment = 1
 [node name="Education" type="Label" parent="StatMargins/StatGrid"]
 custom_minimum_size = Vector2(60, 20)
 layout_mode = 2
+tooltip_text = "Education"
+mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
 text = "Edu: 0
 "
@@ -151,6 +171,8 @@ horizontal_alignment = 1
 [node name="Magic" type="Label" parent="StatMargins/StatGrid"]
 custom_minimum_size = Vector2(60, 20)
 layout_mode = 2
+tooltip_text = "Magic"
+mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
 text = "Mag: 0
 "
@@ -159,6 +181,8 @@ horizontal_alignment = 1
 [node name="MilitaryStrength" type="Label" parent="StatMargins/StatGrid"]
 custom_minimum_size = Vector2(60, 20)
 layout_mode = 2
+tooltip_text = "Military Strength"
+mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
 text = "Mil Str: 0
 "
@@ -167,6 +191,8 @@ horizontal_alignment = 1
 [node name="ForeignRelations" type="Label" parent="StatMargins/StatGrid"]
 custom_minimum_size = Vector2(60, 20)
 layout_mode = 2
+tooltip_text = "Foreign Relations"
+mouse_filter = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_nbddc")
 text = "For Rel: 0
 "
