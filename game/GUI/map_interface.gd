@@ -2,6 +2,7 @@ extends Control
 
 @onready var dice_scene: Node2D = $PanelContainer/DiceScene
 @onready var pause_menu = $PanelContainer2/PauseMenu
+@onready var stat_screen = $StatScreen
 
 var dropzone_scene = preload("res://DropZoneControl/drop_zone.tscn")
 #var Actions = preload("res://ActionControl/actions.gd")
@@ -94,3 +95,7 @@ func pauseMenu():
 	#if turn_order = 5
 		#pass
 		#
+
+
+func _on_button_pressed() -> void:
+	stat_screen.show()
