@@ -678,8 +678,272 @@ func processRevelry(val: int) -> void:
 	
 func processForbiddenResearch(val: int) -> void:
 	State.chaos += 1
+	# +Edu,+Fre
 	StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Education, val * HIGH_OUTPUT)
 	StatisticalGrowth.increaseStatistic(Datatypes.STATISTICS.Freedom, val * OUTPUT)
 	StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Faith, val * OUTPUT)
 	StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Health, val * OUTPUT)
 	StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.ForeignRelations, val * OUTPUT)
+
+func canAfford(actionID: Datatypes.ACTIONS, die_value: int) -> bool:
+	match actionID:
+		Datatypes.ACTIONS.Diplomacy:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * OUTPUT)
+			var needed = die_value * OUTPUT
+			if State.military_strength - needed < StatisticalGrowth.MILITARY_STRENGTH_MIN:
+				return false
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Wealth, val * OUTPUT)
+			if State.wealth - needed < StatisticalGrowth.WEALTH_MIN:
+				return false
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Influence, val * REDUCED_OUTPUT)
+			needed = die_value * REDUCED_OUTPUT
+			if State.influence - needed < StatisticalGrowth.INFLUENCE_MIN:
+				return false
+			return true
+		Datatypes.ACTIONS.Clairvoyance:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Magic, val * HIGH_OUTPUT)
+			var needed = die_value * HIGH_OUTPUT
+			if State.magic - needed < StatisticalGrowth.MAGIC_MIN:
+				return false
+			return true
+		Datatypes.ACTIONS.Harvest:
+			var needed = die_value * OUTPUT
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Health, val * OUTPUT)
+			if State.health - needed < StatisticalGrowth.HEALTH_MIN:
+				return false
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Influence, val * REDUCED_OUTPUT)
+			needed = die_value * REDUCED_OUTPUT
+			if State.influence - needed < StatisticalGrowth.INFLUENCE_MIN:
+				return false
+			return true
+		Datatypes.ACTIONS.Explore:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Influence, val * OUTPUT)
+			var needed = die_value * OUTPUT
+			if State.influence - needed < StatisticalGrowth.INFLUENCE_MIN:
+				return false
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Food, val * HIGH_OUTPUT)
+			needed = die_value * HIGH_OUTPUT
+			if State.food - needed < StatisticalGrowth.FOOD_MIN:
+				return false
+			return true
+		Datatypes.ACTIONS.Market:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Food, val * OUTPUT)
+			var needed = die_value * OUTPUT
+			if State.food - needed < StatisticalGrowth.FOOD_MIN:
+				return false
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Materials, val * OUTPUT)
+			if State.materials - needed < StatisticalGrowth.MATERIALS_MIN:
+				return false
+			return true
+		Datatypes.ACTIONS.Shrine:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Education, val * OUTPUT)
+			var needed = die_value * OUTPUT
+			if State.education - needed < StatisticalGrowth.EDUCATION_MIN:
+				return false
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * REDUCED_OUTPUT)
+			needed = die_value * REDUCED_OUTPUT
+			if State.military_strength - needed < StatisticalGrowth.MILITARY_STRENGTH_MIN:
+				return false
+			return true
+		Datatypes.ACTIONS.Tower:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Wealth, val * HIGH_OUTPUT)
+			var needed = die_value * HIGH_OUTPUT
+			if State.wealth - needed < StatisticalGrowth.WEALTH_MIN:
+				return false
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Faith, val * REDUCED_OUTPUT)
+			needed = die_value * REDUCED_OUTPUT
+			if State.faith - needed < StatisticalGrowth.FAITH_MIN:
+				return false
+			return true
+		Datatypes.ACTIONS.Prison:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Freedom, val * HIGH_OUTPUT)
+			var needed = die_value * HIGH_OUTPUT
+			if State.freedom - needed < StatisticalGrowth.FREEDOM_MIN:
+				return false
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Happiness, val * OUTPUT)
+			needed = die_value * OUTPUT
+			if State.happiness - needed < StatisticalGrowth.HAPPINESS_MIN:
+				return false
+			return true
+		Datatypes.ACTIONS.Barracks:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.ForeignRelations, val * HIGH_OUTPUT)
+			var needed = die_value * HIGH_OUTPUT
+			if State.foreign_relations - needed < StatisticalGrowth.FOREIGN_RELATIONS_MIN:
+				return false
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Materials, val * OUTPUT)
+			needed = die_value * OUTPUT
+			if State.materials - needed < StatisticalGrowth.MATERIALS_MIN:
+				return false
+			return true
+		Datatypes.ACTIONS.Academy:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Materials, val * HIGH_OUTPUT)
+			var needed = die_value * HIGH_OUTPUT
+			if State.materials - needed < StatisticalGrowth.MATERIALS_MIN:
+				return false
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Influence, val * REDUCED_OUTPUT)
+			needed = die_value * REDUCED_OUTPUT
+			if State.influence - needed < StatisticalGrowth.INFLUENCE_MIN:
+				return false
+			return true
+		Datatypes.ACTIONS.Charity:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Wealth, val * MAJOR_OUTPUT)
+			var needed = die_value * MAJOR_OUTPUT
+			if State.wealth - needed < StatisticalGrowth.WEALTH_MIN:
+				return false
+			return true
+		Datatypes.ACTIONS.Hold:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * MAJOR_OUTPUT)
+			var needed = die_value * MAJOR_OUTPUT
+			if State.military_strength - needed < StatisticalGrowth.MILITARY_STRENGTH_MIN:
+				return false
+			return true
+		Datatypes.ACTIONS.Infrastructure:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Materials, val * MAJOR_OUTPUT)
+			var needed = die_value * MAJOR_OUTPUT
+			if State.materials - needed < StatisticalGrowth.MATERIALS_MIN:
+				return false
+			return true
+		Datatypes.ACTIONS.DarkRitual:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Population, val * HIGH_OUTPUT)
+			var needed = die_value * HIGH_OUTPUT
+			if State.population - needed < StatisticalGrowth.POPULATION_MIN:
+				return false
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Happiness, val * HIGH_OUTPUT)
+			needed = die_value * HIGH_OUTPUT
+			if State.happiness - needed < StatisticalGrowth.HAPPINESS_MIN:
+				return false
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Influence, val * REDUCED_OUTPUT)
+			needed = die_value * REDUCED_OUTPUT
+			if State.influence - needed < StatisticalGrowth.INFLUENCE_MIN:
+				return false
+			return true
+		Datatypes.ACTIONS.Warfare:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Population, val * HIGH_OUTPUT)
+			var needed = die_value * HIGH_OUTPUT
+			if State.population - needed < StatisticalGrowth.POPULATION_MIN:
+				return false
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Health, val * REDUCED_OUTPUT)
+			needed = die_value * REDUCED_OUTPUT
+			if State.health - needed < StatisticalGrowth.HEALTH_MIN:
+				return false
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.ForeignRelations, val * REDUCED_OUTPUT)
+			needed = die_value * REDUCED_OUTPUT
+			if State.foreign_relations - needed < StatisticalGrowth.FOREIGN_RELATIONS_MIN:
+				return false
+			return true
+		Datatypes.ACTIONS.OtherworldlyRitual:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Magic, val * HIGH_OUTPUT)
+			var needed = die_value * HIGH_OUTPUT
+			if State.magic - needed < StatisticalGrowth.MAGIC_MIN:
+				return false
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Education, val * REDUCED_OUTPUT)
+			needed = die_value * REDUCED_OUTPUT
+			if State.education - needed < StatisticalGrowth.EDUCATION_MIN:
+				return false
+			return true
+		Datatypes.ACTIONS.Revelry:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Faith, val * OUTPUT)
+			var needed = die_value * OUTPUT
+			if State.faith - needed < StatisticalGrowth.FAITH_MIN:
+				return false
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Education, val * OUTPUT)
+			needed = die_value * OUTPUT
+			if State.education - needed < StatisticalGrowth.EDUCATION_MIN:
+				return false
+			return true
+		Datatypes.ACTIONS.ForbiddenResearch:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Faith, val * OUTPUT)
+			var needed = die_value * OUTPUT
+			if State.faith - needed < StatisticalGrowth.FAITH_MIN:
+				return false
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Health, val * OUTPUT)
+			needed = die_value * OUTPUT
+			if State.health - needed < StatisticalGrowth.HEALTH_MIN:
+				return false
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.ForeignRelations, val * OUTPUT)
+			needed = die_value * OUTPUT
+			if State.foreign_relations - needed < StatisticalGrowth.FOREIGN_RELATIONS_MIN:
+				return false
+			return true
+		_:
+			pass
+	return false
+
+func getCostAbbreviations(actionID: Datatypes.ACTIONS) -> String:
+	var abbrev = ""
+	match actionID:
+		Datatypes.ACTIONS.Diplomacy:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * OUTPUT)
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Wealth, val * OUTPUT)
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Influence, val * REDUCED_OUTPUT)
+			abbrev = "+FoR,+RNG,-MiS,-Wea,-Inf"
+		Datatypes.ACTIONS.Clairvoyance:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Magic, val * HIGH_OUTPUT)
+			abbrev = "+Edu,+Fai,-Mag"
+		Datatypes.ACTIONS.Harvest:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Health, val * OUTPUT)
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Influence, val * REDUCED_OUTPUT)
+			abbrev = "+Foo,+Mat,-Hea,-Inf"
+		Datatypes.ACTIONS.Explore:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Influence, val * OUTPUT)
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Food, val * HIGH_OUTPUT)
+			abbrev = "+Fre,+Edu,+RAN,-Inf,-Foo"
+		Datatypes.ACTIONS.Market:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Food, val * OUTPUT)
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Materials, val * OUTPUT)
+			abbrev = "+Wea,-Foo,-Mat"
+		Datatypes.ACTIONS.Shrine:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Education, val * OUTPUT)
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * REDUCED_OUTPUT)
+			abbrev = "+Fai,+Mag,+RAN,-Edu,-MiS"
+		Datatypes.ACTIONS.Tower:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Wealth, val * HIGH_OUTPUT)
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Faith, val * REDUCED_OUTPUT)
+			abbrev = "+Mag,+MiS,-Wea,-Fai"
+		Datatypes.ACTIONS.Prison:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Freedom, val * HIGH_OUTPUT)
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Happiness, val * OUTPUT)
+			abbrev = "+Inf,+Mat,+MiS,-Fre,-Hap"
+		Datatypes.ACTIONS.Barracks:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.ForeignRelations, val * HIGH_OUTPUT)
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Materials, val * OUTPUT)
+			abbrev = "+MiS,+Inf,-FoR,-Mat"
+		Datatypes.ACTIONS.Academy:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Materials, val * HIGH_OUTPUT)
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Influence, val * REDUCED_OUTPUT)
+			abbrev = "+Edu,+RAN,-Mat,-Inf"
+		Datatypes.ACTIONS.Charity:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Wealth, val * MAJOR_OUTPUT)
+			abbrev = "+Inf,+Hap,+Hea,-Wea"
+		Datatypes.ACTIONS.Hold:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * MAJOR_OUTPUT)
+			abbrev = "+Inf,+Hap,-MiS"
+		Datatypes.ACTIONS.Infrastructure:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Materials, val * MAJOR_OUTPUT)
+			abbrev = "+Pop,+Hea,+Wea,-Mat"
+		Datatypes.ACTIONS.DarkRitual:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Population, val * HIGH_OUTPUT)
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Happiness, val * HIGH_OUTPUT)
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Influence, val * REDUCED_OUTPUT)
+			abbrev = "+Mag,+Foo,+Mat,+Wea,+Fai,-Pop,-Hap,-FoR"
+		Datatypes.ACTIONS.Warfare:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Population, val * HIGH_OUTPUT)
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Health, val * REDUCED_OUTPUT)
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.ForeignRelations, val * REDUCED_OUTPUT)
+			abbrev = "+Fre,+Wea,+Mat,+Fai,-Pop,-Hea,-FoR"
+		Datatypes.ACTIONS.OtherworldlyRitual:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Magic, val * HIGH_OUTPUT)
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Education, val * REDUCED_OUTPUT)
+			abbrev = "+Pop,+Foo,+Mat,-Mag,-Edu"
+		Datatypes.ACTIONS.Revelry:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Faith, val * OUTPUT)
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Education, val * OUTPUT)
+			abbrev = "+Hap,+Fre,-Fai,-Edu"
+		Datatypes.ACTIONS.ForbiddenResearch:
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Faith, val * OUTPUT)
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Health, val * OUTPUT)
+			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.ForeignRelations, val * OUTPUT)
+			abbrev = "+Edu,+Fre,-Fai,-Hea,-FoR"
+		_:
+			pass
+	return abbrev;

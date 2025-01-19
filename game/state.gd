@@ -26,9 +26,20 @@ var order = 0
 # Global turn tracking
 var number_of_turns = 5
 var number_of_actions_per_turn = 1
+var number_of_dice = 5
+
 
 # Event tracking
 var number_of_events = 0
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
 
 func reset_state() -> void:
 	education = 0
@@ -48,22 +59,25 @@ func reset_state() -> void:
 	order = 0
 	
 func set_number_of_turns(n):
+	if n < 1 || n > 10:
+		return
 	number_of_turns = n
 	
 func get_number_of_turns() -> int:
 	return number_of_turns
 	
 func set_number_of_actions_per_turn(n:int) -> void:
+	if n < 1 || n > 10:
+		return
 	number_of_actions_per_turn = n
 	
 func get_number_of_actions_per_turn() -> int:
 	return number_of_actions_per_turn
 	
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
-	pass # Replace with function body.
-
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	pass
+func get_number_of_dice() -> int:
+	return number_of_dice
+	
+func set_number_of_dice(n:int) -> void:
+	if n < 1 || n > 10:
+		return
+	number_of_dice = n

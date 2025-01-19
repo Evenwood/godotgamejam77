@@ -33,8 +33,7 @@ func _ready() -> void:
 	setup_dropzone_positions()
 	dice_scene.position = Vector2(800, 945)
 	turn_tracker_view.position = Vector2(120, 650)
-	turn_tracker_view.next_turn()
-	turn_tracker_view.next_turn()
+	dice_scene.roll_dice()
 
 func _process(delta):
 	influence.text = "Inf: %d" % [State.influence]
@@ -60,9 +59,6 @@ func _process(delta):
 	#pass
 
 func load_dropzones() -> void:
-	var grid_columns = 10
-	var i = 0
-	var spacing = 100
 	for key in Datatypes.ACTIONS.keys():
 		var dropzone = dropzone_scene.instantiate()
 		dropzone.set_action_id(Datatypes.ACTIONS[key])
@@ -75,17 +71,21 @@ func load_dropzones() -> void:
 			text = "Otherworldly Ritual"
 		elif key == "ForbiddenResearch":
 			text = "Forbidden Research"
+		#text += "\n(" + Actions.getCostAbbreviations(Datatypes.ACTIONS[key]) + ")"
 		dropzone.set_label_text(text)
 		dropzone.set_info_text(text)
 		
-		var row = i / grid_columns
-		var col = i % grid_columns
-		dropzone.position = Vector2(col * spacing, row * spacing)
-		i += 1
+		#var row = i / grid_columns
+		#var col = i % grid_columns
+		#dropzone.position = Vector2(col * spacing, row * spacing)
+		#i += 1
 		
 func clear_dropzones():
 	for dropzone in dropzones:
 		dropzone.clear()
+		
+func roll_dice():
+	dice_scene.roll_dice()
 
 func setup_dropzone_positions() -> void:
 	# Diplomacy, Clairvoyance, Harvest, Explore, Market, Shrine, Tower, Prison, Barracks, 
@@ -101,7 +101,7 @@ func setup_dropzone_positions() -> void:
 	dropzone_positions["Prison"] = Vector2(785, 150)
 	dropzone_positions["Barracks"] = Vector2(837, 85)
 	dropzone_positions["Academy"] = Vector2(188, 390)
-	dropzone_positions["Charity"] = Vector2(592, 390)
+	dropzone_positions["Charity"] = Vector2(592, 370)
 	dropzone_positions["Hold"] = Vector2(897, 265)
 	dropzone_positions["Infrastructure"] = Vector2(900, 430)
 	dropzone_positions["DarkRitual"] = Vector2(390, 270)
