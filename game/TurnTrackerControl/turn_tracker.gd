@@ -27,6 +27,9 @@ func get_current_turn() -> int:
 	return current_turn
 	
 func next_turn():
-	if current_turn == number_of_turns:
+	if current_turn > number_of_turns:
 		return
 	current_turn += 1
+
+func has_another_turn() -> bool:
+	return 	current_turn <= number_of_turns

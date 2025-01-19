@@ -153,6 +153,10 @@ func _on_confirmed():
 	actions.triggerAction(action_id, slotted_die_value)
 	#print(State.influence)
 	filled = true
+	var turn_tracker_view = get_tree().root.find_child("TurnTrackerView", true, false)
+	if turn_tracker_view:
+		turn_tracker_view.next_turn()
+	
 
 func _on_canceled():
 	#print("User canceled")

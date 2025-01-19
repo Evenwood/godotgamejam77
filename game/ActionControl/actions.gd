@@ -875,74 +875,74 @@ func getCostAbbreviations(actionID: Datatypes.ACTIONS) -> String:
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * OUTPUT)
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Wealth, val * OUTPUT)
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Influence, val * REDUCED_OUTPUT)
-			abbrev = "MiS,Wea,Inf"
+			abbrev = "-MiS,-Wea,-Inf"
 		Datatypes.ACTIONS.Clairvoyance:
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Magic, val * HIGH_OUTPUT)
-			abbrev = "Mag"
+			abbrev = "-Mag"
 		Datatypes.ACTIONS.Harvest:
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Health, val * OUTPUT)
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Influence, val * REDUCED_OUTPUT)
-			abbrev = "Hea,Inf"
+			abbrev = "-Hea,-Inf"
 		Datatypes.ACTIONS.Explore:
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Influence, val * OUTPUT)
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Food, val * HIGH_OUTPUT)
-			abbrev = "Inf,Foo"
+			abbrev = "-Inf,-Foo"
 		Datatypes.ACTIONS.Market:
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Food, val * OUTPUT)
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Materials, val * OUTPUT)
-			abbrev = "Foo,Mat"
+			abbrev = "-Foo,-Mat"
 		Datatypes.ACTIONS.Shrine:
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Education, val * OUTPUT)
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * REDUCED_OUTPUT)
-			abbrev = "Edu,MiS"
+			abbrev = "-Edu,-MiS"
 		Datatypes.ACTIONS.Tower:
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Wealth, val * HIGH_OUTPUT)
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Faith, val * REDUCED_OUTPUT)
-			abbrev = "Wea,Fai"
+			abbrev = "-Wea,-Fai"
 		Datatypes.ACTIONS.Prison:
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Freedom, val * HIGH_OUTPUT)
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Happiness, val * OUTPUT)
-			abbrev = "Fre,Hap"
+			abbrev = "-Fre,-Hap"
 		Datatypes.ACTIONS.Barracks:
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.ForeignRelations, val * HIGH_OUTPUT)
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Materials, val * OUTPUT)
-			abbrev = "FoR,Mat"
+			abbrev = "-FoR,-Mat"
 		Datatypes.ACTIONS.Academy:
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Materials, val * HIGH_OUTPUT)
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Influence, val * REDUCED_OUTPUT)
-			abbrev = "Mat,Inf"
+			abbrev = "-Mat,-Inf"
 		Datatypes.ACTIONS.Charity:
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Wealth, val * MAJOR_OUTPUT)
-			abbrev = "Wea"
+			abbrev = "-Wea"
 		Datatypes.ACTIONS.Hold:
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.MilitaryStrength, val * MAJOR_OUTPUT)
-			abbrev = "MiS"
+			abbrev = "-MiS"
 		Datatypes.ACTIONS.Infrastructure:
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Materials, val * MAJOR_OUTPUT)
-			abbrev = "Mat"
+			abbrev = "-Mat"
 		Datatypes.ACTIONS.DarkRitual:
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Population, val * HIGH_OUTPUT)
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Happiness, val * HIGH_OUTPUT)
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Influence, val * REDUCED_OUTPUT)
-			abbrev = "Pop,Hap,FoR"
+			abbrev = "-Pop,-Hap,-FoR"
 		Datatypes.ACTIONS.Warfare:
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Population, val * HIGH_OUTPUT)
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Health, val * REDUCED_OUTPUT)
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.ForeignRelations, val * REDUCED_OUTPUT)
-			abbrev = "Pop,Hea,FoR"
+			abbrev = "-Pop,-Hea,-FoR"
 		Datatypes.ACTIONS.OtherworldlyRitual:
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Magic, val * HIGH_OUTPUT)
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Education, val * REDUCED_OUTPUT)
-			abbrev = "Mag,Edu"
+			abbrev = "-Mag,-Edu"
 		Datatypes.ACTIONS.Revelry:
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Faith, val * OUTPUT)
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Education, val * OUTPUT)
-			abbrev = "Fai,Edu"
+			abbrev = "-Fai,-Edu"
 		Datatypes.ACTIONS.ForbiddenResearch:
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Faith, val * OUTPUT)
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.Health, val * OUTPUT)
 			#StatisticalGrowth.decreaseStatistic(Datatypes.STATISTICS.ForeignRelations, val * OUTPUT)
-			abbrev = "Fai,Hea,FoR"
+			abbrev = "-Fai,-Hea,-FoR"
 		_:
 			pass
 	return abbrev;

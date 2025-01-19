@@ -57,9 +57,14 @@ func _add_text_to_box(text, box):
 	
 func next_turn():
 	turn_tracker.next_turn()
-	style_current_turn()
 	style_previous_turn()
-
+	if turn_tracker.has_another_turn() == false:
+		reset()
+		var map_interface = get_tree().root.find_child("MapInterface", true, false)
+		map_interface.clear_dropzones()
+		map_interface.roll_dice()
+	style_current_turn()
+	
 func style_current_turn():
 	var current_turn = turn_tracker.get_current_turn()
 	var box = boxes[current_turn-1]

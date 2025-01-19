@@ -86,6 +86,9 @@ func load_dropzones() -> void:
 func clear_dropzones():
 	for dropzone in dropzones:
 		dropzone.clear()
+		
+func roll_dice():
+	dice_scene.roll_dice()
 
 func setup_dropzone_positions() -> void:
 	# Diplomacy, Clairvoyance, Harvest, Explore, Market, Shrine, Tower, Prison, Barracks, 
@@ -101,7 +104,7 @@ func setup_dropzone_positions() -> void:
 	dropzone_positions["Prison"] = Vector2(785, 150)
 	dropzone_positions["Barracks"] = Vector2(837, 85)
 	dropzone_positions["Academy"] = Vector2(188, 390)
-	dropzone_positions["Charity"] = Vector2(592, 390)
+	dropzone_positions["Charity"] = Vector2(592, 370)
 	dropzone_positions["Hold"] = Vector2(897, 265)
 	dropzone_positions["Infrastructure"] = Vector2(900, 430)
 	dropzone_positions["DarkRitual"] = Vector2(390, 270)
