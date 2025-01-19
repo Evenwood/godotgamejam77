@@ -59,9 +59,6 @@ func _process(delta):
 	#pass
 
 func load_dropzones() -> void:
-	var grid_columns = 10
-	var i = 0
-	var spacing = 100
 	for key in Datatypes.ACTIONS.keys():
 		var dropzone = dropzone_scene.instantiate()
 		dropzone.set_action_id(Datatypes.ACTIONS[key])

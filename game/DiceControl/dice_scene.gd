@@ -28,6 +28,7 @@ func _ready():
 	
 	# Initialize results
 	results_label.text = "Roll the dice!"
+	$DiceUI.hide()
 
 func _on_roll_button_pressed():
 	num_dice = int(num_dice_spinner.value)

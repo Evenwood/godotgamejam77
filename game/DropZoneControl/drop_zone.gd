@@ -108,6 +108,7 @@ func _on_item_dropped(item):
 	if filled:
 		return
 	# Can't drop if cannot afford
+	hover_die_value = item.value
 	if actions.canAfford(action_id, hover_die_value) == false:
 		item.cancel_drop()
 		hover_die_value = 0
@@ -162,9 +163,11 @@ func _on_canceled():
 	#print("User canceled")
 	hover_die_value = 0
 	slotted_die_value = 0
+	if dropped_die:
+		dropped_die.cancel_drop()
 	dropped_die = null
 	filled = false
-	dropped_die.cancel_drop()
+	
 	
 func cannot_drop():
 	return filled || actions.canAfford(action_id, hover_die_value) == false
@@ -173,5 +176,7 @@ func has_die():
 	return filled
 	
 func clear():
+	hover_die_value = 0
+	slotted_die_value = 0
 	dropped_die = null
 	filled = false
