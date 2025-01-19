@@ -7,7 +7,7 @@ extends Node
 enum ACTIONS {Diplomacy, Clairvoyance, Harvest, Explore, Market, Shrine, Tower, Prison, Barracks, Academy, Charity, Hold, Infrastructure, DarkRitual, Warfare, OtherworldlyRitual, Revelry, ForbiddenResearch}
 enum STATISTICS {Influence, Wealth, Freedom, Health, Faith, Education, ForeignRelations, MilitaryStrength, Population, Materials, Magic, Food, Happiness}
 enum MINOR_EVENTS {Gift, RequestAid, DiplomaticIncident, VisionFear, VisionDelight, VisionInspiration, TiredWorkers, UncoveredTreasure, BountifulHarvest, LostTravelers, MysteriousOthers, GreatDiscovery, MarketBoom, MarketCrash, ForeignIntrigue, PrayersAnswered, Defilers, LostSpirits, MagicalExperiment, FailedSpellcraft, WizardsRequest, Riots, AllsCalm, CriminalRoundup, AdvancedTraining, NewRecruits, TrainingAccident, NewGraduates, ForeignExchange, AcademicMishap, Gratitude, Pacifism, DivineBlessing, Disarmament, MinorSkirmish, PeaceQuiet, SocietalGrowth, Mismanagement, InvestmentOpportunity, Curse, DemonCommune, DesiresFulfilled, MilitaryAdvancement, ExceptionalManeuver, CripplingDefeat, SummonMonsters, SummonVisitors, SummonSpirits, Festival, RunAmok, CulturalWave, DarkDiscovery, EvilAdvances, Miracle}
-enum MAJOR_EVENTS {}
+enum MAJOR_EVENTS {VolcanicEruption, RampantPoverty, PoliticalDivision, WarringNations, DarkOneDescent}
 
 
 static var  action_strings = {
