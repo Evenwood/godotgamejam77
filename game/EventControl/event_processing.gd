@@ -23,6 +23,8 @@ func _process(delta: float) -> void:
 	
 func getEventDescription() -> String:
 	var description
+	if(State.number_of_events == 4):
+		get_tree().change_scene_to_file("res://GUI/credits.tscn")
 	match event_array[State.number_of_events]:
 		Datatypes.MAJOR_EVENTS.VolcanicEruption:
 			description = "As long foretold by oracles of the past, the time has finally come for the great volcano, Cataclysmos, to erupt. What they could not foresee however is the advancement of our nation and how widespread the peoples of the land have become. If we don't act, the volcano's eruption may wipe out thousands. How shall we respond?"

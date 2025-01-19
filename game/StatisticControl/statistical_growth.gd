@@ -182,6 +182,14 @@ func increaseStatistic(statistic: Datatypes.STATISTICS, val: int) -> void:
 			if(checkCorrelation(val)):
 				positiveCorrelation(POPULATION_POS_CORRELATION, val)
 				negativeCorrelation(POPULATION_NEG_CORRELATION, val)
+		Datatypes.STATISTICS.Happiness:
+			if((State.happiness + val) > HAPPINESS_MAX):
+				State.happiness = HAPPINESS_MAX
+			else:
+				State.happiness += val
+			if(checkCorrelation(val)):
+				positiveCorrelation(HAPPINESS_POS_CORRELATION, val)
+				negativeCorrelation(HAPPINESS_NEG_CORRELATION, val)
 		Datatypes.STATISTICS.Wealth:
 			if((State.wealth + val) > WEALTH_MAX):
 				State.wealth = WEALTH_MAX
@@ -293,6 +301,14 @@ func decreaseStatistic(statistic: Datatypes.STATISTICS, val: int) -> void:
 			if(checkCorrelation(val)):
 				positiveCorrelation(POPULATION_NEG_CORRELATION, val)
 				negativeCorrelation(POPULATION_POS_CORRELATION, val)
+		Datatypes.STATISTICS.Happiness:
+			if((State.happiness - val) < HAPPINESS_MIN):
+				State.happiness = HAPPINESS_MIN
+			else:
+				State.happiness -= val
+			if(checkCorrelation(val)):
+				positiveCorrelation(HAPPINESS_NEG_CORRELATION, val)
+				negativeCorrelation(HAPPINESS_POS_CORRELATION, val)
 		Datatypes.STATISTICS.Wealth:
 			if((State.wealth - val) < WEALTH_MIN):
 				State.wealth = WEALTH_MIN

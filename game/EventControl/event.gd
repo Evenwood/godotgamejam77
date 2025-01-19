@@ -48,11 +48,16 @@ func _on_option_3_pressed() -> void:
 
 
 func _on_visibility_changed() -> void:
-	setEventDetails()
+	pass
 
 
 func _on_event_results_confirmed() -> void:
 	EventProcessing.triggerEvent(choice)
+	$".".hide()
+	setEventDetails()
+	State.number_of_events += 1
+	if(State.number_of_events == 4):
+		get_tree().change_scene_to_file("res://GUI/credits.tscn")
 
 
 func _on_event_results_canceled() -> void:

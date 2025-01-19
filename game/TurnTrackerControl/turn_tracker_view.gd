@@ -63,6 +63,8 @@ func next_turn():
 		var map_interface = get_tree().root.find_child("MapInterface", true, false)
 		map_interface.clear_dropzones()
 		map_interface.roll_dice()
+		var event = map_interface.find_child("EventCanvas", true, false)
+		event.show()
 	style_current_turn()
 	
 func style_current_turn():
