@@ -1,10 +1,66 @@
-[gd_scene load_steps=9 format=3 uid="uid://byechr8qw8rjg"]
+[gd_scene load_steps=19 format=3 uid="uid://byechr8qw8rjg"]
 
 [ext_resource type="Script" path="res://GUI/main_menu.gd" id="1_8br0w"]
 [ext_resource type="Texture2D" uid="uid://cihejk81mk8cj" path="res://Assets/main_menu.jpg" id="2_hh3ne"]
 [ext_resource type="Theme" uid="uid://xlky6upwwha" path="res://Assets/menu-theme.tres" id="3_fr1n2"]
+[ext_resource type="Shader" path="res://GUI/pause_menu.gdshader" id="3_oj2mf"]
+[ext_resource type="AudioStream" uid="uid://bwp8r6i5qgn6w" path="res://Assets/typewriter-typing-68696.mp3" id="4_1qti1"]
 [ext_resource type="AudioStream" uid="uid://dv1j2xj181cao" path="res://Assets/Gregorian Chant.mp3" id="4_he376"]
 [ext_resource type="AudioStream" uid="uid://cbvsbwhgqgaau" path="res://Assets/Bells1.mp3" id="4_hrqjj"]
+[ext_resource type="Script" path="res://GUI/close_story.gd" id="5_1x6a1"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0er2j"]
+shader = ExtResource("3_oj2mf")
+shader_parameter/lod = 3.171
+
+[sub_resource type="Theme" id="Theme_r3tda"]
+
+[sub_resource type="FontVariation" id="FontVariation_cnvh5"]
+
+[sub_resource type="Theme" id="Theme_05wg0"]
+default_font = SubResource("FontVariation_cnvh5")
+
+[sub_resource type="SystemFont" id="SystemFont_2tcm3"]
+font_weight = 450
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uw8t0"]
+content_margin_left = 29.0
+bg_color = Color(0.6, 0.6, 0.6, 0.470588)
+border_width_left = 8
+border_width_top = 8
+border_width_right = 8
+border_width_bottom = 8
+border_color = Color(0, 0, 0, 1)
+border_blend = true
+corner_radius_top_left = 15
+corner_radius_top_right = 15
+corner_radius_bottom_right = 15
+corner_radius_bottom_left = 15
+corner_detail = 10
+shadow_color = Color(0.00310393, 0.00160902, 5.15978e-05, 0.6)
+
+[sub_resource type="GDScript" id="GDScript_6osgh"]
+script/source = "extends RichTextLabel
+
+var menu_text = \"THE WORLD IN TURMOIL...\"#\\n\\nThe great EMPIRE has fallen to a rebel band led by a COURAGEOUS LEADER said to be in direct contact with the divine.\\n\\nA new provisional government has been created to solve the many problems the slaving EMPIRE has left behind. Many institutions are still despotic and are in desperate need of reform.\\n\\n Worst of all, many benefited from the Empire's policies are unhappy with the rebels new pretender government.\\n\\n How will you improve the lives of the people?\"
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	scroll_text(menu_text)
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+#func _process(delta: float) -> void:
+	#pass
+	#
+func scroll_text(input_text:String) -> void:
+	visible_characters = 0
+	text + input_text
+	
+	for i in get_parsed_text():
+		visible_characters += 1
+		await get_tree().create_timer(0.075).timeout
+"
 
 [sub_resource type="FontVariation" id="FontVariation_d3deb"]
 
@@ -27,6 +83,56 @@ layout_mode = 0
 offset_right = 1281.0
 offset_bottom = 720.0
 texture = ExtResource("2_hh3ne")
+
+[node name="ColorRect2" type="ColorRect" parent="TextureRect"]
+material = SubResource("ShaderMaterial_0er2j")
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 352.0
+offset_top = 88.0
+offset_right = -398.0
+offset_bottom = -307.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.0248, 0.910212)
+theme = SubResource("Theme_r3tda")
+color = Color(0.276284, 0.145599, 0.0579455, 0.85098)
+
+[node name="RichTextLabel" type="RichTextLabel" parent="TextureRect/ColorRect2"]
+layout_mode = 0
+offset_right = 531.0
+offset_bottom = 325.0
+theme = SubResource("Theme_05wg0")
+theme_override_colors/table_border = Color(0, 0, 0, 1)
+theme_override_colors/default_color = Color(0, 0, 0, 1)
+theme_override_colors/font_selected_color = Color(0, 0, 0, 1)
+theme_override_colors/selection_color = Color(0, 0, 0, 1)
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_fonts/normal_font = SubResource("SystemFont_2tcm3")
+theme_override_font_sizes/normal_font_size = 25
+theme_override_styles/normal = SubResource("StyleBoxFlat_uw8t0")
+text = "THE WORLD IN TURMOIL...
+ 
+The great EMPIRE has fallen to a rebel band led by a COURAGEOUS LEADER said to be in direct contact with the divine. A new provisional government has been created to solve the many problems the slaving EMPIRE has left behind. Many institutions are still despotic and are in desperate need of reform. Worst of all, many benefited from the Empire's policies are unhappy with the rebels new pretender government. How will you improve the lives of the people?"
+scroll_following = true
+script = SubResource("GDScript_6osgh")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="TextureRect/ColorRect2/RichTextLabel"]
+stream = ExtResource("4_1qti1")
+volume_db = 10.0
+autoplay = true
+attenuation = 0.258817
+
+[node name="close_story" type="Button" parent="TextureRect/ColorRect2"]
+layout_mode = 0
+offset_left = 492.0
+offset_top = 18.0
+offset_right = 508.0
+offset_bottom = 36.0
+text = "X"
+script = ExtResource("5_1x6a1")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TextureRect"]
 layout_mode = 0
@@ -60,5 +166,6 @@ text = "Quit"
 stream = ExtResource("4_he376")
 autoplay = true
 
+[connection signal="pressed" from="TextureRect/ColorRect2/close_story" to="." method="_on_close_story_pressed"]
 [connection signal="pressed" from="TextureRect/HBoxContainer/Button" to="." method="_on_button_pressed"]
 [connection signal="pressed" from="TextureRect/HBoxContainer/Button2" to="." method="_on_button_2_pressed"]
