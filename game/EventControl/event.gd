@@ -18,7 +18,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	setEventDetails()
 
 func setEventDetails() -> void:
 	event_description.text = EventProcessing.getEventDescription()
