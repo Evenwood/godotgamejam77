@@ -20,3 +20,7 @@ func _on_button_pressed() -> void:
 	#$AudioStreamPlayer2D.play()
 	get_tree().change_scene_to_file("res://GUI/Map_interface.tscn")
 	
+
+func _on_close_story_pressed() -> void:
+	$TextureRect/ColorRect2/RichTextLabel/AudioStreamPlayer2D.volume_db = -100
+	$TextureRect/ColorRect2.visible = false
