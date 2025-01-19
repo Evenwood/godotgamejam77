@@ -27,6 +27,9 @@ var order = 0
 var number_of_turns = 5
 var number_of_actions_per_turn = 1
 
+# Event tracking
+var number_of_events = 0
+
 func reset_state() -> void:
 	education = 0
 	faith = 0
