@@ -126,13 +126,13 @@ func set_up_label_styles():
 	var style = StyleBoxFlat.new()
 	style.bg_color = Color(1, 1, 1, 0.5)
 	label.add_theme_stylebox_override("normal", style)
-	label.add_theme_font_size_override("font_size", 12)
+	label.add_theme_font_size_override("font_size", 10)
 	
 	info_label.add_theme_color_override("font_color", Color.DARK_BLUE)
 	var info_style = StyleBoxFlat.new()
 	info_style.bg_color = Color(1, 1, 0, 0.8)
 	info_label.add_theme_stylebox_override("normal", info_style)
-	info_label.add_theme_font_size_override("font_size", 12)
+	info_label.add_theme_font_size_override("font_size", 10)
 	info_label.z_index = 10
 	
 func set_up_confrm_dialog():

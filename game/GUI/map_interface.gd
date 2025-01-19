@@ -74,7 +74,7 @@ func load_dropzones() -> void:
 			text = "Otherworldly Ritual"
 		elif key == "ForbiddenResearch":
 			text = "Forbidden Research"
-		text += " (" + Actions.getCostAbbreviations(Datatypes.ACTIONS[key]) + ")"
+		#text += "\n(" + Actions.getCostAbbreviations(Datatypes.ACTIONS[key]) + ")"
 		dropzone.set_label_text(text)
 		dropzone.set_info_text(text)
 		
