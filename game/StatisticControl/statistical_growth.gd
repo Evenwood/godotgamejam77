@@ -188,6 +188,8 @@ func increaseStatistic(statistic: Datatypes.STATISTICS, val: int) -> void:
 			else:
 				State.wealth += val
 			if(checkCorrelation(val)):
+				if(val > 100):
+					val /= 10
 				positiveCorrelation(WEALTH_POS_CORRELATION, val)
 				negativeCorrelation(WEALTH_NEG_CORRELATION, val)
 		_:
@@ -297,6 +299,8 @@ func decreaseStatistic(statistic: Datatypes.STATISTICS, val: int) -> void:
 			else:
 				State.wealth -= val
 			if(checkCorrelation(val)):
+				if(val > 100):
+					val /= 10
 				positiveCorrelation(WEALTH_NEG_CORRELATION, val)
 				negativeCorrelation(WEALTH_POS_CORRELATION, val)
 		_:
