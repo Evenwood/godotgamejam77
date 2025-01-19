@@ -28,3 +28,9 @@ func _on_restart_pressed() -> void:
 
 func _on_resume_pressed() -> void:
 	hide()
+
+
+func _on_credits_pressed() -> void:
+	#res://Assets/Credits.jpg
+	get_tree().change_scene_to_file("res://GUI/credits.tscn")
+	#pass

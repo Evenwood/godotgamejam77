@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bblcdjvp3e88x"]
+[gd_scene load_steps=6 format=3 uid="uid://bblcdjvp3e88x"]
 
 [ext_resource type="Script" path="res://GUI/map_interface.gd" id="1_3htrq"]
 [ext_resource type="Texture2D" uid="uid://dqtb4nyvell4j" path="res://Assets/Game_board.jpg" id="1_7b7h7"]
 [ext_resource type="PackedScene" uid="uid://cn8p8gir5v5ib" path="res://DiceControl/dice_scene.tscn" id="3_h6jwy"]
 [ext_resource type="PackedScene" uid="uid://cwcup6x6mim5w" path="res://GUI/pause_menu.tscn" id="4_wtv0c"]
+[ext_resource type="AudioStream" uid="uid://ciloxw376cues" path="res://Assets/That Zen Moment.mp3" id="5_rpubq"]
 
 [node name="MapInterface" type="Control"]
 layout_mode = 3
@@ -34,3 +35,7 @@ offset_bottom = 40.0
 [node name="PauseMenu" parent="PanelContainer2" instance=ExtResource("4_wtv0c")]
 visible = false
 layout_mode = 2
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_rpubq")
+autoplay = true

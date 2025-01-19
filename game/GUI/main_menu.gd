@@ -17,4 +17,6 @@ func _on_button_2_pressed() -> void:
 # on Start Game button press
 func _on_button_pressed() -> void:
 	#var gameScene = preload("res://GUI/Map_interface.tscn")
+	#$AudioStreamPlayer2D.play()
 	get_tree().change_scene_to_file("res://GUI/Map_interface.tscn")
+	

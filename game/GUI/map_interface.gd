@@ -8,6 +8,7 @@ var dropzone_scene = preload("res://DropZoneControl/drop_zone.tscn")
 var dropzones = []
 var dropzone_positions = {}
 var paused = false;
+var turn_order = 0
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -88,3 +89,8 @@ func pauseMenu():
 		pause_menu.show()
 		Engine.time_scale = 0
 	paused = !paused
+	
+#func victoryScreen():
+	#if turn_order = 5
+		#pass
+		#
